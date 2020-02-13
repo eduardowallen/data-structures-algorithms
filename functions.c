@@ -11,7 +11,7 @@ Node* createNode(int key) {
 }
 List* createList(int key) {
 	List* newList = (List*)malloc(sizeof(List));
-	newList->head = NULL;
+	newList->empty = NULL;
 	newList->id = key;
 	return newList;
 }
@@ -22,7 +22,7 @@ void insert(List** l, Node** n) {
 	printf("Checking if list is empty...\n");
 	if (isEmpty(l)) {
 		(*l)->node = (*n);
-		(*l)->head = 1;
+		(*l)->empty = 1;
 		printf("INSERTED Node INTO LIST: %i | POINTER: %p | Data: %i \n", (*l)->id, (*l)->node, (*l)->node->data);
 	}
 	else {
@@ -30,11 +30,11 @@ void insert(List** l, Node** n) {
 		(*l)->node->next = (*n);
 		printf("INSERTED Node INTO LIST: %i | POINTER: %p | Data: %i \n", (*l)->id, (*l)->node->next, (*l)->node->next->data);
 	}
-
+	
 }
 
 int isEmpty(List** l) {
-	if ((*l)->head == NULL) {
+	if ((*l)->empty == NULL) {
 		printf("LIST IS EMPTY \n");
 		return 1;
 	}
@@ -54,7 +54,7 @@ Node* search(List** l, int key) {
 	} while (tempnode != NULL);
 	free(tempnode);
 }
-Node* maximum(List** l) {
+Node* Maximum(List** l) {
 	Node* tempnode = (*l)->node;
 	Node* bignode = NULL;
 	int i = 0;
