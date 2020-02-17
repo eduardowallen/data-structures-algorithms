@@ -55,7 +55,7 @@ Node* search(List** L, int key) {
 }
 Node* Maximum(List** L) {
 	Node* tempnode = (*L)->node; // Creates a temporary node and sets its data to the List node
-	Node* big_node = NULL;
+	Node* big_node = tempnode;		// Creates a temporary node and assigns its value to NULL
 	int big = 0;
 	do {
 		if (tempnode->data > big) {
@@ -70,7 +70,7 @@ Node* Maximum(List** L) {
 }
 Node* Minimum(List** L) {
 	Node* tempnode = (*L)->node;	// Creates a temporary node and assigns the incoming node to it
-	Node* min_node = tempnode;		// Creates a temporary node and assigns its value to NULL			 
+	Node* min_node = tempnode;		// Creates a temporary node and assigns its value to NULL
 	int min = tempnode->data;
 	do {
 		if (min > tempnode->data) {
