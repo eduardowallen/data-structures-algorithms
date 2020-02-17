@@ -110,22 +110,18 @@ int main() {
 	if (tempnode1 != NULL)
 		printf("Predecessor of node %p is %p\n", tempnode2, tempnode1);	// Prints the data in the node returned from Maximum function.
 	printf("*****************************************\n");
-	/*
-	for (i = 1; i < 10; i++) {			// Inserting 10 nodes into the list, going from 1 to 10.
-		tempnode1 = createNode(i);		// Creates a node (overwrites the current data in tempnode) and stores it in tempnode1
-		tempnode2 = createNode(i);		// Creates a node (overwrites the current data in tempnode) and stores it in tempnode2
-		insert(&L1, &tempnode1);		// Inserts the created node into L1
-		insert(&L2, &tempnode2);		// Inserts the created node into L2
-	}
-	for (i = 10; i > 0; i--) {			// Inserting 10 nodes into the list, going from 10 to 1.
-		tempnode1 = createNode(i);		// Creates a node (overwrites the current data in tempnode) and stores it in tempnode1
-		tempnode2 = createNode(i);		// Creates a node (overwrites the current data in tempnode) and stores it in tempnode2
-		insert(&L1, &tempnode1);		// Inserts the created node into L1
-		insert(&L2, &tempnode2);		// Inserts the created node into L2
-	}
-	*/
-	//print(&L1);						// Prints L1 (for viewing purposes)
-	//print(&L2);						// Prints L2 (for viewing purposes)
 
-	//search(&L1, 2);					// Searches L1 for nodes that contain the key 2 and returns a pointer to the node. Does not return anything if the list is empty.
+
+
+	tempnode2 = search(&L1, 3); delete(&L1, &tempnode2); print(&L1);
+	tempnode2 = search(&L1, 5); delete(&L1, &tempnode2); print(&L1);
+	tempnode2 = search(&L1, 1); delete(&L1, &tempnode2); print(&L1);
+	tempnode2 = search(&L1, 7); delete(&L1, &tempnode2); print(&L1);
+	tempnode2 = search(&L1, 8); delete(&L1, &tempnode2); print(&L1);
+	tempnode2 = search(&L1, 10); print(&L1);
+	if (tempnode2 != NULL) {
+		tempnode2 = delete(&L1, &tempnode2);
+		free(&tempnode2);
+	}		
+	print(&L1);
 }

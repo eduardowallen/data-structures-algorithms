@@ -15,7 +15,7 @@ List* createList(int key) {
 	newList->id = key;		// Set id to key
 	return newList;			// Return the list to the main function
 }
-void insert(List** L, Node** N) { // Using double pointers because we want to manipulate the list and node in main function
+void insert(List** L, Node** N) {	// Using double pointers because we want to manipulate the list and node in main function
 	printf("\nTRYING TO INSERTING DATA INTO L%d\n", (*L)->id);
 	printf("Node to insert: %p | Data: %i \n", (*N), (*N)->data);
 	printf("Checking if list is empty...\n");
@@ -30,12 +30,11 @@ void insert(List** L, Node** N) { // Using double pointers because we want to ma
 		while (tempnode->next != NULL)
 			tempnode = tempnode->next;
 		printf("Tempnode is now: %p\n", tempnode);
-		(*N)->prev = tempnode;	// Set prev for the node n (that points to tempnode in main) to point to the newest node in the list (that origins from main)
-		tempnode->next = (*N);	// Set next for the newest node in the list (that origins from main)
+		(*N)->prev = tempnode;		// Set prev for the node n (that points to tempnode in main) to point to the newest node in the list (that origins from main)
+		tempnode->next = (*N);		// Set next for the newest node in the list (that origins from main)
 		printf("Inserted node into L%d\n", (*L)->id);
 	}
 }
-
 int isEmpty(List** L) {
 	if ((*L)->empty == NULL) {
 		printf("L%d is empty.\n", (*L)->id);
@@ -58,17 +57,17 @@ Node* search(List** L, int key) {
 Node* successor(List** L, Node** N) {
 	Node* tempnode = (*N);
 	if (tempnode->next == NULL) 
-		printf("\n%p has no successor and is therefore the last node in the list.\n", (*N), tempnode->next);
-	return tempnode->next;		// Returns tempnode to main (NULL if empty)
+		printf("\n%p has no successor and is therefore the last node in the list.\n", (*N));
+	return tempnode->next;			// Returns tempnode to main (NULL if empty)
 }
 Node* predecessor(List** L, Node** N) {
 	Node* tempnode = (*N);
 	if (tempnode->prev == NULL) 
-		printf("\n%p has no predecessor and is therefore the first node in the list.\n", (*N), tempnode->prev);
-	return tempnode->prev;		// Returns tempnode to main (NULL if empty)
+		printf("\n%p has no predecessor and is therefore the first node in the list.\n", (*N));
+	return tempnode->prev;			// Returns tempnode to main (NULL if empty)
 }
 Node* Maximum(List** L) {
-	Node* tempnode = (*L)->node; // Creates a temporary node and sets its data to the List node
+	Node* tempnode = (*L)->node;	// Creates a temporary node and sets its data to the List node
 	Node* big_node = tempnode;		// Creates a temporary node and assigns its value to NULL
 	int big = 0;
 	do {
@@ -108,4 +107,38 @@ void print(List** L) {
 		printf("-----\n");
 		tempnode = tempnode->next;
 	} while (tempnode != NULL);
+}
+Node* delete(List** L, Node** N) {	// Using double pointers because we want to manipulate the list and node in main function
+	printf("\nTRYING TO DELETE DATA FROM L%d\n", (*L)->id);
+	printf("Node to delete: %p | Data: %i \n", (*N), (*N)->data);
+	Node* nextnode = successor(L, N);
+	Node* previousnode = predecessor(L, N);
+
+	/* Vi behöver göra en kontroll i koden nedan som ska ta reda på följande saker:
+		>>	Är previous och next null? Isf blir listan tom när vi tar bort noden. Enkelt med andra ord.
+		>>	Är previous null? Isf är vi i head of list och behöver sätta att nästa är head of list
+		>>	Är next null? Isf är vi i slutet av listan och behöver bara radera noden
+		>>	Vi behöver då sätta att previous ska vara 
+	*/
+	if (previousnode == NULL && nextnode == NULL) {	// If the list only has one node
+		printf("L%d will be empty after deletion.\n", (*L)->id);
+		(*L)->empty = 0; // Set the list to empty
+		(*L)->node = NULL;
+	} else {
+		if (previousnode == NULL) {			// If we are at head of list, previous should be NULL
+			nextnode->prev = NULL;			// Set the next node->prev to be NULL
+			(*L)->node = nextnode;			// Set the next node to be head of list
+			printf("Head of list should now be %p, (%d)\n", nextnode, nextnode->data);
+		} else if (nextnode == NULL) {		// If we are at end of list
+			printf("Previousnode is %p (%d)\n", previousnode, previousnode->data);
+		} else {							// If we inbetween nodes
+			nextnode->prev = previousnode;	// Point past the current node (the next node's prev points to the node before the current node)
+			previousnode->next = nextnode;	// Point past the current node (previous node's next points to the node after the current node)
+			printf("Previousnode->next is %p (%d)\n", previousnode->next, previousnode->next->data);
+			printf("Nextnode->prev is %p (%d)\n", nextnode->prev, nextnode->prev->data);
+			printf("Head of list should now be %p, (%d)\n", previousnode, previousnode->data);
+		}
+		printf("Head of list in reality is %p, (%d)\n", (*L)->node, (*L)->node->data);
+	}
+	return((*N));
 }
