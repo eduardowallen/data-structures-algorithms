@@ -50,7 +50,7 @@ int main() {
 	printf("*****************************************\n");
 
 	printf("\n\n*****************************************\n");
-	printf("*****  Exercise 2, predecessor of L1  *****\n");
+	printf("****  Exercise 2, predecessor of L1  ****\n");
 	printf("*****************************************\n");
 	tempnode2 = search(&L1, 5);
 	tempnode1 = successor(&L1, &tempnode2);
@@ -103,7 +103,7 @@ int main() {
 	printf("*****************************************\n");
 
 	printf("\n\n*****************************************\n");
-	printf("*****  Exercise 2, predecessor of L2  *****\n");
+	printf("****  Exercise 2, predecessor of L2  ****\n");
 	printf("*****************************************\n");
 	tempnode2 = search(&L2, 9);
 	tempnode1 = successor(&L2, &tempnode2);
@@ -113,15 +113,10 @@ int main() {
 
 
 
-	tempnode2 = search(&L1, 3); delete(&L1, &tempnode2); print(&L1);
-	tempnode2 = search(&L1, 5); delete(&L1, &tempnode2); print(&L1);
-	tempnode2 = search(&L1, 1); delete(&L1, &tempnode2); print(&L1);
-	tempnode2 = search(&L1, 7); delete(&L1, &tempnode2); print(&L1);
-	tempnode2 = search(&L1, 8); delete(&L1, &tempnode2); print(&L1);
-	tempnode2 = search(&L1, 10); print(&L1);
-	if (tempnode2 != NULL) {
-		tempnode2 = delete(&L1, &tempnode2);
-		free(&tempnode2);
-	}		
-	print(&L1);
+	tempnode2 = search(&L1, 3); if (tempnode2 != NULL) tempnode2 = delete(&L1, &tempnode2); print(&L1);
+	tempnode2 = search(&L1, 5); if (tempnode2 != NULL) tempnode2 = delete(&L1, &tempnode2); print(&L1);
+	tempnode2 = search(&L1, 1); if (tempnode2 != NULL) tempnode2 = delete(&L1, &tempnode2); print(&L1);
+	tempnode2 = search(&L1, 7); if (tempnode2 != NULL) tempnode2 = delete(&L1, &tempnode2); print(&L1);
+	tempnode2 = search(&L1, 8); if (tempnode2 != NULL) tempnode2 = delete(&L1, &tempnode2); print(&L1);
+	tempnode2 = search(&L1, 10); if (tempnode2 != NULL) tempnode2 = delete(&L1, &tempnode2); print(&L1);
 }
