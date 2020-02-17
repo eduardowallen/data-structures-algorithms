@@ -56,10 +56,8 @@ Node* search(List** L, int key) {
 Node* Maximum(List** L) {
 	Node* tempnode = (*L)->node; // Creates a temporary node and sets its data to the List node
 	Node* big_node = NULL;
-	int i = 0;
 	int big = 0;
 	do {
-		i++;
 		if (tempnode->data > big) {
 			big = tempnode->data;
 			big_node = tempnode;
@@ -67,22 +65,22 @@ Node* Maximum(List** L) {
 		tempnode = tempnode->next;
 	} while (tempnode != NULL);
 	if (big_node == NULL)
-		printf("\nThere are no nodes in the selected list.");
+		printf("\nMaximum function response: There are no nodes in the selected list.");
 	return big_node;
 }
 Node* Minimum(List** L) {
-	Node* tempnode = (*L)->node; // Creates a temporary node and assigns the incoming node to it
-	Node* min_node = NULL;		 // Creates a temporary node and assigns its value to NULL			 
+	Node* tempnode = (*L)->node;	// Creates a temporary node and assigns the incoming node to it
+	Node* min_node = tempnode;		// Creates a temporary node and assigns its value to NULL			 
 	int min = tempnode->data;
 	do {
 		if (min > tempnode->data) {
 			min = tempnode->data;
-			min_node = tempnode;		
+			min_node = tempnode;
 		}
 		tempnode = tempnode->next;
 	} while (tempnode != NULL);
 	if (min_node == NULL)
-		printf("\nThere are no nodes in the selected list.");
+		printf("\nMinimum function response: There are no nodes in the selected list.");
 	return min_node;
 }
 void print(List** L) {
