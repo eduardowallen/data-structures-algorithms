@@ -1,5 +1,5 @@
 ﻿#include "header.h"
-
+// Created by Eduardo Wallén & Junior Corazza
 // Creates a new node and returns a pointer to it.
 
 Node* createNode(int key) {
