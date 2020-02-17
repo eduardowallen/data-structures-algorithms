@@ -25,9 +25,17 @@ void insert(List** L, Node** N) { // Using double pointers because we want to ma
 		printf("INSERTED Node INTO LIST: %i | POINTER: %p | Data: %i \n", (*L)->id, (*L)->node, (*L)->node->data);
 	}
 	else {
-		(*N)->prev = (*L)->node;	// Set prev for the node n(that points to tempnode in main) to point to the newest node in the list (that origins from main)
-		(*L)->node->next = (*N);	// Set next for the newest node in the list (that origins from main)
-		printf("INSERTED Node INTO LIST: %i | POINTER: %p | Data: %i \n", (*L)->id, (*L)->node->next, (*L)->node->next->data);
+		Node* tempnode = (*L)->node;
+		printf("L node = %p, %d, %d", (*L)->node, (*L)->node->data, (*L)->node->next);
+		while (tempnode->next != NULL) {
+			printf("Tempnode 1: %p", tempnode);
+			tempnode = tempnode->next;
+			printf("Tempnode 2: %p", tempnode);
+		} 
+		(*N)->prev = tempnode;	// Set prev for the node n (that points to tempnode in main) to point to the newest node in the list (that origins from main)
+		tempnode->next = (*N);	// Set next for the newest node in the list (that origins from main)
+		printf("INSERTED Node INTO LIST: %i | POINTER: %p | Data: %i \n", (*L)->id, tempnode->next, tempnode->next->data);  // Prints what list the pointer is inserted into, the node pointer and the node data.
+		free(tempnode);
 	}
 }
 
@@ -39,7 +47,7 @@ int isEmpty(List** L) {
 	else return 0;
 }
 Node* search(List** L, int key) {
-	Node* tempnode = (*L)->node;	// Allocate memory for a temporary node
+	Node* tempnode = (*L)->node;
 	do {
 		if (tempnode->data == key) {
 			printf("\nFOUND TEMPNODE HALLELUEJAH | Pointer(%p) -> Data(%d)\n", tempnode, tempnode->data);
@@ -50,7 +58,7 @@ Node* search(List** L, int key) {
 	free(tempnode);
 }
 Node* Maximum(List** L) {
-	Node* tempnode = (*L)->node; // 
+	Node* tempnode = (*L)->node; // Creates a temporary node and sets its data to the List node
 	Node* big_node = NULL;
 	int i = 0;
 	int big = 0;
@@ -67,9 +75,9 @@ Node* Maximum(List** L) {
 	return big_node;
 }
 Node* Minimum(List** L) {
-	Node* tempnode = (*L)->node; // 
-	Node* min_node = NULL;
-	int i = 0;
+	Node* tempnode = (*L)->node; // Creates a temporary node and assigns the incoming node to it
+	Node* min_node = NULL;		 // Creates a temporary node and assigns its value to NULL
+	int i = 0;					 
 	int min = 0;
 	do {
 		i++;
