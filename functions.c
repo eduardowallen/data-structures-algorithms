@@ -22,20 +22,17 @@ void insert(List** L, Node** N) { // Using double pointers because we want to ma
 	if (isEmpty(L)) {				// Check if list is empty (if true, continue)
 		(*L)->node = (*N);			// Insert the node n(that points to tempnode in main) to the list l (that origins from main)
 		(*L)->empty = 1;			// Set the list to not being empty anymore
-		printf("INSERTED Node INTO LIST: %i | POINTER: %p | Data: %i \n", (*L)->id, (*L)->node, (*L)->node->data);
+		printf("INSERTED Node INTO LISTA: %i | POINTER: %p | Data: %i \n", (*L)->id, (*L)->node, (*L)->node->data);
 	}
 	else {
 		Node* tempnode = (*L)->node;
 		printf("L node = %p, %d, %d", (*L)->node, (*L)->node->data, (*L)->node->next);
-		while (tempnode->next != NULL) {
-			printf("Tempnode 1: %p", tempnode);
+		while (tempnode->next != NULL)
 			tempnode = tempnode->next;
-			printf("Tempnode 2: %p", tempnode);
-		} 
+		printf("\nTempnode is now: %p\n", tempnode);
 		(*N)->prev = tempnode;	// Set prev for the node n (that points to tempnode in main) to point to the newest node in the list (that origins from main)
 		tempnode->next = (*N);	// Set next for the newest node in the list (that origins from main)
 		printf("INSERTED Node INTO LIST: %i | POINTER: %p | Data: %i \n", (*L)->id, tempnode->next, tempnode->next->data);  // Prints what list the pointer is inserted into, the node pointer and the node data.
-		free(tempnode);
 	}
 }
 
@@ -55,7 +52,6 @@ Node* search(List** L, int key) {
 		}
 		tempnode = tempnode->next;
 	} while (tempnode != NULL);
-	free(tempnode);
 }
 Node* Maximum(List** L) {
 	Node* tempnode = (*L)->node; // Creates a temporary node and sets its data to the List node
@@ -76,14 +72,12 @@ Node* Maximum(List** L) {
 }
 Node* Minimum(List** L) {
 	Node* tempnode = (*L)->node; // Creates a temporary node and assigns the incoming node to it
-	Node* min_node = NULL;		 // Creates a temporary node and assigns its value to NULL
-	int i = 0;					 
-	int min = 0;
+	Node* min_node = NULL;		 // Creates a temporary node and assigns its value to NULL			 
+	int min = tempnode->data;
 	do {
-		i++;
-		if (min < tempnode->data) {
+		if (min > tempnode->data) {
 			min = tempnode->data;
-			min_node = tempnode;
+			min_node = tempnode;		
 		}
 		tempnode = tempnode->next;
 	} while (tempnode != NULL);
@@ -102,5 +96,4 @@ void print(List** L) {
 		printf("\n-----");
 		tempnode = tempnode->next;
 	} while (tempnode != NULL);
-	free(tempnode);
 }
