@@ -38,7 +38,7 @@ void insert(List** L, Node** N) { // Using double pointers because we want to ma
 
 int isEmpty(List** L) {
 	if ((*L)->empty == NULL) {
-		printf("L%d is empty.\n");
+		printf("L%d is empty.\n", (*L)->id);
 		return 1;
 	}
 	else return 0;
@@ -47,11 +47,25 @@ Node* search(List** L, int key) {
 	Node* tempnode = (*L)->node;
 	do {
 		if (tempnode->data == key) {
-			printf("\nFOUND TEMPNODE HALLELUEJAH | Pointer(%p) -> Data(%d)\n", tempnode, tempnode->data);
+			printf("\nNode found: Pointer(%p), Data(%d)\n", tempnode, tempnode->data);
 			return tempnode;		// Returns tempnode to main
 		}
 		tempnode = tempnode->next;
 	} while (tempnode != NULL);
+	printf("\nNode not found.");
+	return NULL;
+}
+Node* successor(List** L, Node** N) {
+	Node* tempnode = (*N);
+	if (tempnode->next == NULL) 
+		printf("\n%p has no successor and is therefore the last node in the list.\n", (*N), tempnode->next);
+	return tempnode->next;		// Returns tempnode to main (NULL if empty)
+}
+Node* predecessor(List** L, Node** N) {
+	Node* tempnode = (*N);
+	if (tempnode->prev == NULL) 
+		printf("\n%p has no predecessor and is therefore the first node in the list.\n", (*N), tempnode->prev);
+	return tempnode->prev;		// Returns tempnode to main (NULL if empty)
 }
 Node* Maximum(List** L) {
 	Node* tempnode = (*L)->node; // Creates a temporary node and sets its data to the List node

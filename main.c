@@ -40,6 +40,24 @@ int main() {
 		printf("Maximum node: data(%d), pointer(%p)\n", tempnode1->data, tempnode1);	// Prints the data in the node returned from Maximum function.
 	printf("*****************************************\n");
 
+	printf("\n\n*****************************************\n");
+	printf("*****  Exercise 2, successor of L1  *****\n");
+	printf("*****************************************\n");
+	tempnode2 = search(&L1, 5);
+	tempnode1 = successor(&L1, &tempnode2);
+	if (tempnode1 != NULL)
+		printf("Successor of node %p is %p\n", tempnode2, tempnode1);	// Prints the data in the node returned from Maximum function.
+	printf("*****************************************\n");
+
+	printf("\n\n*****************************************\n");
+	printf("*****  Exercise 2, predecessor of L1  *****\n");
+	printf("*****************************************\n");
+	tempnode2 = search(&L1, 5);
+	tempnode1 = successor(&L1, &tempnode2);
+	if (tempnode1 != NULL)
+		printf("Predecessor of node %p is %p\n", tempnode2, tempnode1);	// Prints the data in the node returned from Maximum function.
+	printf("*****************************************\n");
+
 	// Creates the content for L2 as described in the lab exercise 2 (L2 = [5,2,9,6,1,2])
 	printf("\n\n\n*********************************************************************************************************\n");
 	printf("*******  Creates the content for L2 as described in the lab exercise 2  (L2 = [5, 2, 9, 6, 1, 2])  ******\n");
@@ -75,6 +93,23 @@ int main() {
 		printf("Maximum node: data(%d), pointer(%p)\n", tempnode2->data, tempnode2);	// Prints the data in the node returned from Maximum function.
 	printf("*****************************************\n");
 
+	printf("\n\n*****************************************\n");
+	printf("*****  Exercise 2, successor of L2  *****\n");
+	printf("*****************************************\n");
+	tempnode2 = search(&L2, 9);
+	tempnode1 = successor(&L2, &tempnode2);
+	if (tempnode1 != NULL)
+		printf("Successor of node %p is %p\n", tempnode2, tempnode1);	// Prints the data in the node returned from Maximum function.
+	printf("*****************************************\n");
+
+	printf("\n\n*****************************************\n");
+	printf("*****  Exercise 2, predecessor of L2  *****\n");
+	printf("*****************************************\n");
+	tempnode2 = search(&L2, 9);
+	tempnode1 = successor(&L2, &tempnode2);
+	if (tempnode1 != NULL)
+		printf("Predecessor of node %p is %p\n", tempnode2, tempnode1);	// Prints the data in the node returned from Maximum function.
+	printf("*****************************************\n");
 	/*
 	for (i = 1; i < 10; i++) {			// Inserting 10 nodes into the list, going from 1 to 10.
 		tempnode1 = createNode(i);		// Creates a node (overwrites the current data in tempnode) and stores it in tempnode1
