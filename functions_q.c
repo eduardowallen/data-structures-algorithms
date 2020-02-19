@@ -11,7 +11,7 @@ int rear = 0; // Global variable and sets it to 0 as queue is not initialized ye
 void enqueue(int x) {
 	if (size < MAX_ARRAY_SIZE)
 	{
-		if (size == 0 || rear == MAX_ARRAY_SIZE)
+		if (size == 0 || rear == MAX_ARRAY_SIZE-1)
 		{
 			queue[0] = x;
 			rear = 0;
@@ -26,7 +26,7 @@ void enqueue(int x) {
 			size++; // Adds +1 to size
 			printf("Size %d rear: %d. ", size, rear);
 			printf("%d added to queue.\n", x); // Prints x to make sure it's the correct number added
-			rear = rear % 16;
+			rear = rear % 15;
 		}
 	}
 	else	// If rear is MAX_ARRAY_SIZE - 1, then the queue is full
@@ -41,7 +41,7 @@ void dequeue() {
 		printf("%d dequeued. Front: %d \n", queue[front], front);	// Prints the dequeued number
 		size--;	// Take away 1 from size
 		front++; // Adds + 1 to front
-		front = front % 16;
+		front = front % 15;
 	}
 }
 
@@ -50,11 +50,18 @@ void display_queue() {
 	if (size <= 0)	// If size is less or equal to 0 queue is empty
 		printf("Queue is empty.\n");	// Prints it's empty
 	else {
-		printf("Numbers in queue: ");
-		for (i = front; i <= MAX_ARRAY_SIZE - 1; i++)	// For-loop the loops through each number from front to rear
-			printf("%d ", queue[i]);	// Prints each number
-		for (i = rear; i < front; i++)
-			printf("%d ", queue[i]);
+		printf("Numbers in queue:\n");
+		if (rear >= front) {
+			for (i = front; i <= rear; i++)
+				printf("%d ", queue[i]);	// Prints each number
+		}
+		else {
+			for (i = front; i < 15; i++)
+				printf("%d ", queue[i]);	// Prints each number
+
+			for (i = 0; i <= rear; i++)
+				printf("%d ", queue[i]);	// Prints each number
+		}
 		printf("\n");
 	}
 }
