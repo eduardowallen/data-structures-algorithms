@@ -67,7 +67,7 @@ Node* predecessor(List** L, Node** N) {
 		printf("\n%p has no predecessor and is therefore the first node in the list.\n", (*N));
 	return tempnode->prev;			// Returns tempnode to main (NULL if empty)
 }
-Node* Maximum(List** L) {
+Node* maximum(List** L) {
 	Node* tempnode = (*L)->node;	// Creates a temporary node and sets its data to the List node
 	Node* big_node = tempnode;		// Creates a temporary node and assigns its value to NULL
 	int big = 0;
@@ -82,7 +82,7 @@ Node* Maximum(List** L) {
 		printf("Maximum function response: There are no nodes in the selected list.\n");
 	return big_node;
 }
-Node* Minimum(List** L) {
+Node* minimum(List** L) {
 	Node* tempnode = (*L)->node;	// Creates a temporary node and assigns the incoming node to it
 	Node* min_node = tempnode;		// Creates a temporary node and assigns its value to NULL
 	int min = tempnode->data;
@@ -118,12 +118,6 @@ Node* delete(List** L, Node** N) {	// Using double pointers because we want to m
 	Node* nextnode = successor(L, N);
 	Node* previousnode = predecessor(L, N);
 
-	/* Vi behöver göra en kontroll i koden nedan som ska ta reda på följande saker:
-		>>	Är previous och next null? Isf blir listan tom när vi tar bort noden. Enkelt med andra ord.
-		>>	Är previous null? Isf är vi i head of list och behöver sätta att nästa är head of list
-		>>	Är next null? Isf är vi i slutet av listan och behöver bara radera noden
-		>>	Vi behöver då sätta att previous ska vara 
-	*/
 	if (previousnode == NULL && nextnode == NULL) {	// If the list only has one node
 		printf("L%d will be empty after deletion.\n", (*L)->id);
 		(*L)->empty = 0; // Set the list to empty

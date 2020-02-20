@@ -12,3 +12,16 @@ typedef struct List {
 	int empty;			// Integer that we use to keep track if the list is empty or not
 	int id;				// Integer that we use to see what list ID we are working with
 } List;
+
+Node* createNode(int key);
+List* createList(int key);
+void insert(List** L, Node** N);
+int isEmpty(List** L);
+Node* search(List** L, int key);
+Node* successor(List** L, Node** N);
+Node* predecessor(List** L, Node** N);
+Node* maximum(List** L);
+Node* minimum(List** L);
+void print(List** L);
+Node* delete(List** L, Node** N);
+
