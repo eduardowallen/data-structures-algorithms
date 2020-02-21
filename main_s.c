@@ -1,6 +1,6 @@
 #include "header_s.h"
 
-int stack() {
+int main() {
 	display();	// Execute display function to see numbers in stack 
 	pop();		// Execute pop function to pop the last number
 	push(9);	
