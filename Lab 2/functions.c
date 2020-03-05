@@ -1,4 +1,5 @@
 #include "header.h"
+#pragma warning (disable: 6386 6385 6011)
 /* Function to sort an array using insertion sort*/
 void print(int arr[], int length) {
 	int i;
@@ -10,30 +11,33 @@ void insertionSort(int arr[], int length, int smallest)
 {
 	int i, key, j;
 	/*
+	***These are the arrays we're working with****
+	________________________________________________
 	int L1[6] = { 3, 1, 5, 10, 8, 7 };
 	int L2[6] = { 5, 2, 9, 6, 1, 2 };
 	int pnum[10] = { 9, 0, 1, 1, 2, 6, 0, 9, 3, 3 };
+	________________________________________________
 	*/
-	for (i = 1; i < length; i++) {
-		key = arr[i];
-		j = i - 1;
-		/* Move elements of arr[0..i-1], that are
-		  greater than key, to one position ahead
-		  of their current position */
+	for (i = 1; i < length; i++) { // "i" is the "right" box
+		key = arr[i];	// We copy the value of the data inside a[i]
+		j = i - 1;		// We set j to be the predecessor of i
+
+		// If "smallest" is set to 1 we want to sort in ascending order
 		if (smallest) {
-			while (j >= 0 && arr[j] > key) {
-				arr[j + 1] = arr[j];
-				j = j - 1;
+			while (j >= 0 && arr[j] > key) {	// If we're inside the array (j>=0) and predecessor is smaller than the successor (right int is smaller than the left int)
+				arr[j + 1] = arr[j];	// Set the right int to be the left int
+				j = j - 1;				// update the index of j (see why on row 38)
 			}
-		} else {
-			while (j >= 0 && arr[j] < key) {
-				arr[j + 1] = arr[j];
-				j = j - 1;
+		} else { // We want to sort in descending order
+			while (j >= 0 && arr[j] < key) { // If we're inside the array (j>=0) and predecessor is larger than the successor (right int is larger than the left int)
+				arr[j + 1] = arr[j];	// Set the right int to be the left int
+				j = j - 1;				// update the index of j (see why on row 38)
 			}
 		}
+		// Now set the left int to be equal to the int(key) we saved in the beginning
 		arr[j + 1] = key;
 	}
-	print(arr, length);
+	print(arr, length);	// Prints the array so we can see the result
 }
 
 void merge(int arr[], int p, int q, int r) {
@@ -81,10 +85,10 @@ void merge(int arr[], int p, int q, int r) {
 void mergeSort(int arr[], int p, int r) {
 	if (p < r) {
 		int q = (p + r) / 2;
-		// Divide and Conquer
+		// Divide and Conquer (recursive with itself)
 		mergeSort(arr, p, q);
 		mergeSort(arr, q + 1, r);
-		// Combine
+		// Combine with merge
 		merge(arr, p, q, r);
 	}
 }
