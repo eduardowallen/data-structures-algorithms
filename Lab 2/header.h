@@ -1,3 +1,4 @@
+// Written by Eduardo Wallén and Junior Corazza 2020-03-05
 #include <stdio.h>
 #include <stdlib.h>
 #define ARR_LEN 6

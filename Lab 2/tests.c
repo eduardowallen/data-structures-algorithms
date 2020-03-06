@@ -1,3 +1,4 @@
+// Written by Eduardo Wallén and Junior Corazza 2020-03-05
 #include "header.h"
 #define ARR_LEN 6
 #define PNR_LEN 10
@@ -85,24 +86,26 @@ void testMergeSort_pnum() {
 	printf("End of test\n\n");
 }
 /* Testing our algorithms on the sorting problems */
+/* As the program inserts an int at the first entry in the array and you haven't included any README-file whatsoever about how to use or how we should consider the
+extra integer that gets added into the array, we now have to include that extra integer and add one more as we didn't account for the function to behave this way and
+rearranging the entire array just to get rid of the first int (arr[0]) seems like an awful lot of unnecessary work, so we didn't do that. */
+
 void testProblem(int arr[], int solution[], char type[], char order[]) {
 	int start = arr[0];
 	if (strcmp(type, "insert") == 0) {
 		printf("Insertionsort on problem in %s order:\n", order);
 		if (strcmp(order, "asc") == 0) { // Sort incoming array ascending
-			insertionSort(arr, start + 1, 1);
+			insertionSort(arr, start + 1, 1);	// Using insertionSort on the incoming array
 			printf("Solution:\n");
 			print(solution, solution[0] + 1);
 		} 
 		else // Sort incoming array descending
-			insertionSort(arr, start+1, 0);
+			insertionSort(arr, start+1, 0);		// Using insertionSort on the incoming array
 	}
 	if (strcmp(type, "merge") == 0) {
 		printf("Mergesort on problem\n");
-		//printf("%d", arr[0] - 1);
-		mergeSort(arr, 0, start);
-		printf("\nARRAY 0: %d\n", start);
-		print(arr, start + 1);
+		mergeSort(arr, 0, start); // Using mergeSort algorithm on the incoming array
+		print(arr, start + 1); 
 		printf("Solution:\n");
 		print(solution, solution[0] + 1);
 	}

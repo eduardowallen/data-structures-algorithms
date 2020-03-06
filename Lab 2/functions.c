@@ -1,6 +1,7 @@
+// Written by Eduardo Wallén and Junior Corazza 2020-03-05
 #include "header.h"
 #include "load_file.h"
-#pragma warning (disable: 6386 6385 6011)
+#pragma warning (disable: 6386 6385 6011) // Disabling some warnings that were a nuisance.
 
 
 void print(int arr[], int length) {
