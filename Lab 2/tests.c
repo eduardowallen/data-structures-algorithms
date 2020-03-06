@@ -86,20 +86,23 @@ void testMergeSort_pnum() {
 }
 /* Testing our algorithms on the sorting problems */
 void testProblem(int arr[], int solution[], char type[], char order[]) {
+	int start = arr[0];
 	if (strcmp(type, "insert") == 0) {
 		printf("Insertionsort on problem in %s order:\n", order);
 		if (strcmp(order, "asc") == 0) { // Sort incoming array ascending
-			insertionSort(arr, arr[0] + 1, 1);
+			insertionSort(arr, start + 1, 1);
 			printf("Solution:\n");
 			print(solution, solution[0] + 1);
-		} else							// Sort incoming array descending
-			insertionSort(arr, arr[0]+1, 0);
+		} 
+		else // Sort incoming array descending
+			insertionSort(arr, start+1, 0);
 	}
 	if (strcmp(type, "merge") == 0) {
 		printf("Mergesort on problem\n");
 		//printf("%d", arr[0] - 1);
-		mergeSort(arr, 0, (arr[0]));
-		print(arr, arr[0] + 1);
+		mergeSort(arr, 0, start);
+		printf("\nARRAY 0: %d\n", start);
+		print(arr, start + 1);
 		printf("Solution:\n");
 		print(solution, solution[0] + 1);
 	}
