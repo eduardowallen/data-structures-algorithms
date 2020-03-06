@@ -61,10 +61,8 @@ void testInsertionSortDescending_pnum() {
 	insertionSort(pnum, NUM(pnum), 0);
 	printf("End of test\n\n");
 }
-/*
-Tests for mergeSort
-We expect the list to
-*/
+
+// Tests for mergeSort
 void testMergeSort_L1() {
 	printf("testMergeSort_L1\n");
 	print(L1, NUM(L1));
@@ -72,7 +70,6 @@ void testMergeSort_L1() {
 	print(L1, NUM(L1));
 	printf("End of test\n\n");
 }
-
 void testMergeSort_L2() {
 	printf("testMergeSort_L2\n");
 	print(L2, NUM(L2));
@@ -80,7 +77,6 @@ void testMergeSort_L2() {
 	print(L2, NUM(L2));
 	printf("End of test\n\n");
 }
-
 void testMergeSort_pnum() {
 	printf("testMergeSort_pnum\n");
 	print(pnum, NUM(pnum));
@@ -88,21 +84,24 @@ void testMergeSort_pnum() {
 	print(pnum, NUM(pnum));
 	printf("End of test\n\n");
 }
-
-void testProblem(int arr[], char type, char order) {
+/* Testing our algorithms on the sorting problems */
+void testProblem(int arr[], int solution[], char type[], char order[]) {
 	if (strcmp(type, "insert") == 0) {
-		printf("Insertionsort on problem in %c order\n", order);
-		print(arr, 10);
-		if (strcmp(order, "asc") == 0) // Sort incoming array ascending
-			insertionSort(arr, 10, 1);
-		else							// Sort incoming array descending
-			insertionSort(arr, 10, 0);
-		printf("End of test\n\n");
+		printf("Insertionsort on problem in %s order:\n", order);
+		if (strcmp(order, "asc") == 0) { // Sort incoming array ascending
+			insertionSort(arr, arr[0] + 1, 1);
+			printf("Solution:\n");
+			print(solution, solution[0] + 1);
+		} else							// Sort incoming array descending
+			insertionSort(arr, arr[0]+1, 0);
 	}
 	if (strcmp(type, "merge") == 0) {
 		printf("Mergesort on problem\n");
-		print(arr, 10);
-		mergeSort(arr, 0, 10 - 1);
-		printf("End of test\n\n");
+		//printf("%d", arr[0] - 1);
+		mergeSort(arr, 0, (arr[0]));
+		print(arr, arr[0] + 1);
+		printf("Solution:\n");
+		print(solution, solution[0] + 1);
 	}
+	printf("End of test\n\n");
 }

@@ -2,13 +2,20 @@
 #include "load_file.h"
 #pragma warning (disable: 6386 6385 6011)
 
-/* Function to sort an array using insertion sort*/
+
 void print(int arr[], int length) {
 	int i;
 	for (i = 0; i < length; i++)
 		printf("%d ", arr[i]);
 	printf("\n");
 }
+void printProblem(int arr[], int length) {
+	int i;
+	for (i = 1; i < length; i++)
+		printf("%d ", arr[i]);
+	printf("\n");
+}
+/* Function to sort an array using insertion sort*/
 void insertionSort(int arr[], int length, int order)
 {
 	int i, key, j;
@@ -43,6 +50,7 @@ void insertionSort(int arr[], int length, int order)
 	print(arr, length);	// Prints the array so we can see the result
 }
 
+/* The following code (with a few additions) follows the pseudocode that can be read on page 31 in the book "Introduction to Algorithms Third edition" (ISBN: 978-0-262-03384-8)*/
 void merge(int arr[], int p, int q, int r) {
 	int i, j, k;                // Integers that hold values
 	int n1 = q - p + 1;         // Amount of elements in the left array
