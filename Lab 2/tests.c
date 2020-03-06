@@ -61,9 +61,9 @@ void testInsertionSortDescending_pnum() {
 	insertionSort(pnum, NUM(pnum), 0);
 	printf("End of test\n\n");
 }
-/* 
+/*
 Tests for mergeSort
-We expect the list to 
+We expect the list to
 */
 void testMergeSort_L1() {
 	printf("testMergeSort_L1\n");
@@ -87,4 +87,22 @@ void testMergeSort_pnum() {
 	mergeSort(pnum, 0, PNR_LEN - 1);
 	print(pnum, NUM(pnum));
 	printf("End of test\n\n");
+}
+
+void testProblem(int arr[], char type, char order) {
+	if (strcmp(type, "insert") == 0) {
+		printf("Insertionsort on problem in %c order\n", order);
+		print(arr, 10);
+		if (strcmp(order, "asc") == 0) // Sort incoming array ascending
+			insertionSort(arr, 10, 1);
+		else							// Sort incoming array descending
+			insertionSort(arr, 10, 0);
+		printf("End of test\n\n");
+	}
+	if (strcmp(type, "merge") == 0) {
+		printf("Mergesort on problem\n");
+		print(arr, 10);
+		mergeSort(arr, 0, 10 - 1);
+		printf("End of test\n\n");
+	}
 }

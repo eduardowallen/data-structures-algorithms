@@ -1,5 +1,7 @@
 #include "header.h"
+#include "load_file.h"
 #pragma warning (disable: 6386 6385 6011)
+
 /* Function to sort an array using insertion sort*/
 void print(int arr[], int length) {
 	int i;
@@ -7,7 +9,7 @@ void print(int arr[], int length) {
 		printf("%d ", arr[i]);
 	printf("\n");
 }
-void insertionSort(int arr[], int length, int smallest)
+void insertionSort(int arr[], int length, int order)
 {
 	int i, key, j;
 	/*
@@ -22,13 +24,14 @@ void insertionSort(int arr[], int length, int smallest)
 		key = arr[i];	// We copy the value of the data inside a[i]
 		j = i - 1;		// We set j to be the predecessor of i
 
-		// If "smallest" is set to 1 we want to sort in ascending order
-		if (smallest) {
+		// If "order" is set to 1 we want to sort in ascending order
+		if (order) {
 			while (j >= 0 && arr[j] > key) {	// If we're inside the array (j>=0) and predecessor is smaller than the successor (right int is smaller than the left int)
 				arr[j + 1] = arr[j];	// Set the right int to be the left int
 				j = j - 1;				// update the index of j (see why on row 38)
 			}
-		} else { // We want to sort in descending order
+		}
+		else { // We want to sort in descending order
 			while (j >= 0 && arr[j] < key) { // If we're inside the array (j>=0) and predecessor is larger than the successor (right int is larger than the left int)
 				arr[j + 1] = arr[j];	// Set the right int to be the left int
 				j = j - 1;				// update the index of j (see why on row 38)
@@ -61,10 +64,11 @@ void merge(int arr[], int p, int q, int r) {
 	j = 0;	// index of right subarray
 	k = p;	// index of merged subarray
 	for (; i < n1 && j < n2;) {	// iterate through the subarrays
-		if (L[i] <= R[j]){			// checks if the (index of) left subarray is lower than or equal to (index of) the right subarray
+		if (L[i] <= R[j]) {			// checks if the (index of) left subarray is lower than or equal to (index of) the right subarray
 			arr[k] = L[i];			// inserts the integer from the left subarray into our merged array
 			i++;					// increments the index of the left subarray
-		} else {				// If the right subarray is lower than the left subarray...
+		}
+		else {				// If the right subarray is lower than the left subarray...
 			arr[k] = R[j];			// insert the integer from the right subarray into our merged array
 			j++;					// increment the index of the right subarray
 		} k++;			// increment the index of our merged array
