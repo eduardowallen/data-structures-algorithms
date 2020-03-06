@@ -1,5 +1,6 @@
 // Written by Eduardo Wallén and Junior Corazza 2020-03-05
 #include "header.h"
+#include "load_file.c"
 
 int main() {
 	testInsertionSortAscending_L1();
@@ -12,4 +13,5 @@ int main() {
 	testMergeSort_L1();
 	testMergeSort_L2();
 	testMergeSort_pnum();
+	load_file("test-10-1-problem");
 }
