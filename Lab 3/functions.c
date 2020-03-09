@@ -37,7 +37,7 @@ int treemax(Node* root) {
 
 	while (root->right != NULL)
 		root = root->right;
-	return root->key;
+	return root;
 	//printf("Max: %d\n", root->key);
 }
 int treemin(Node* root) {
@@ -62,13 +62,24 @@ int successor(Node* root) {
 		temp = treemin(root->right);
 		return printf("Successor of %d is %d \n", root->key, temp->key);
 	}
-	printf("root key is %d", root->key);
 	temp = root->parent;
-	printf("temp key is %d", temp->key);
 	while ((temp != NULL) && (root == temp->right)) {
 		root = temp;
-		temp = root->parent;
+		temp = temp->parent;
 	}
-	printf("Successor of %d is %d\n", temp->key, root->key);
+	return printf("Successor of %d is %d\n", root->key, temp->key);
+}
 
+int predecessor(Node* root) {
+	Node* temp = new_node(NULL);
+	if (root->left != NULL) {
+		temp = treemax(root->left);
+		return printf("Predecessor of %d is %d \n", root->key, temp->key);
+	}
+	temp = root->parent;
+	while ((temp != NULL) && (root == temp->left)) {
+		root = temp;
+		temp = temp->parent;
+	}
+	return printf("Predecessor of %d is %d\n", root->key, temp->key);
 }
