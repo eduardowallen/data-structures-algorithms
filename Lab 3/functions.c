@@ -11,6 +11,7 @@ Node* new_node(int x) {
 Node* insert(Node* T, Node* z) {
 	Node* y = new_node(NULL);
 	Node* x = new_node(NULL);
+	y = NULL;
 	x = T;
 	while (x != NULL) {
 		y = x;
@@ -29,7 +30,7 @@ Node* insert(Node* T, Node* z) {
 void inordertreewalk(Node* root) {		// print out tree in the correct order
 	if (root != NULL) {
 		inordertreewalk(root->left);			// Goes through left side
-		printf("%d \n", root->key);
+		printf("%d\n", root->key);
 		inordertreewalk(root->right);			// Goes through right side
 	}
 }

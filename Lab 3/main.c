@@ -3,7 +3,15 @@
 Det vi har kvar:
 Delete
 Height - size
-Få bort nollan som skrivs ut
+*/
+/*
+			 13
+		   /   \
+		  5    50
+		 /\    / \
+		3 12  42  49
+		\  /
+		 4 11
 */
 int main() {
 	struct node* root = NULL;
@@ -20,7 +28,8 @@ int main() {
 	treemax(root);
 	treemin(root);
 	Node* temp = new_node(NULL);
-	temp = treesearch(root, 5);
-	printf("treesearch for 5 is: %d\n", temp->key);
+	temp = treesearch(root, 13);
+	printf("treesearch for 13 is: %d\n", temp->key);
 	predecessor(temp);
+	successor(temp);
 }
