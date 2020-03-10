@@ -84,3 +84,48 @@ int predecessor(Node* root) {
 	}
 	return printf("Predecessor of %d is %d\n", root->key, temp->key);
 }
+
+int treeheight(Node* root) {
+	if (root == NULL)
+		return 0;
+	else
+	{
+		int rd = treeheight(root->right);
+		int ld = treeheight(root->left);
+		if (ld > rd)
+			return (ld + 1);
+		else return (rd + 1);
+	}
+}
+
+int treesize(Node* root) {
+	if (root == NULL)
+		return 0;
+	else
+		return(1 + treesize(root->right) + treesize(root->left));
+}
+
+// ********** TREE PRINT OUT *********** 
+void padding(char ch, int n) {
+	int i;
+
+	for (i = 0; i < n; i++)
+		putchar(ch);
+}
+
+void structure(struct node* root, int level) {
+	int i;
+
+	if (root == NULL) {
+		padding('\t', level);
+		puts("~");
+	}
+	else {
+		structure(root->right, level + 1);
+		padding('\t', level);
+		printf("%d\n", root->key);
+		structure(root->left, level + 1);
+	}
+}
+
+// ********* TREE PRINT OUT *************
