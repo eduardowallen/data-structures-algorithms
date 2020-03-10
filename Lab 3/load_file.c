@@ -5,6 +5,7 @@
 #include <stdint.h>
 
 #include "load_file.h"
+#define PROBLEMS_PATH "C:/Users/eduar/OneDrive/Plugg/Visual studio projects/data-structures-algorithms/Lab 2/sorting_problems/"
 
 int* load_file(const char* fName)
 {

@@ -14,24 +14,24 @@ Delete
 */
 int main() {
 	Node* root = NULL;
+	/*
 	root = insert(root, new_node(13));	// Creates a root and inserts node
-	insert(root, new_node(5));		// Inserts node
-	insert(root, new_node(3));		// Inserts node
-	insert(root, new_node(4));		// Inserts node
-	insert(root, new_node(50));		// Inserts node
-	insert(root, new_node(49));		// Inserts node
-	insert(root, new_node(12));		// Inserts node
-	insert(root, new_node(11));		// Inserts node
-	insert(root, new_node(42));		// Inserts node
+	growTree();	// Inserts some nodes into tree
 	printf("Height: %d\n", treeheight(root));		// height of tree
 	printf("Size: %d\n", treesize(root));			// Size of tree
 	inordertreewalk(root);			// Prints every node out in order
 	treemax(root);					// prints tree max
 	treemin(root);					// prints tree min
-	structure(root, 0); // TREE PRINT OUT
-	Node* temp = new_node(NULL);	 // creates temp node for our tree search
+	printTree(root, 0);				// Prints the tree so that it's easier to see if it looks the way we think it looks
+	Node* temp = new_node(NULL);	// creates temp node to catch our tree search
 	temp = treesearch(root, 13);
 	printf("treesearch for 13 is: %d\n", temp->key);
 	predecessor(temp);
 	successor(temp);
+	printf("Attempting delete on node 5\n");
+	delete(root, treesearch(root, 5));
+	structure(root,0);*/
+	//fileToTree(root, loadProblem(1));
+	growTree(root);
+	printTree(root, 0);
 }

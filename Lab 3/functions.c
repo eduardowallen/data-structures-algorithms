@@ -1,18 +1,30 @@
 #include "header.h"
-
+#include "load_file.h"
+#pragma warning (disable: 6386 6385 6011 4133 4047) // Disabling some warnings that were a nuisance.
 Node* new_node(int x) {
 	Node* temp = (Node*)malloc(sizeof(Node));
 	temp->key = x;
 	temp->left = NULL;
 	temp->right = NULL;
+	temp->parent = NULL;
 	return temp;
 }
-
 Node* insert(Node* T, Node* z) {
 	Node* y = new_node(NULL);
 	Node* x = new_node(NULL);
 	y = NULL;
 	x = T;
+	if (T == NULL) {
+		/* 
+		Det är här vi måste kolla om trädet är fullt eller inte.
+		I uppgiften står det att vi ska skapa binära träd baserat på problemen i sorting_problems
+		och då måste man kunna skapa ett nytt träd om det inte finns något
+		*/
+		T = new_node(z);
+		printf("T is empty");
+		insert(T, z);
+		exit(0);
+	}
 	while (x != NULL) {
 		y = x;
 		if (z->key < x->key)
@@ -26,7 +38,41 @@ Node* insert(Node* T, Node* z) {
 		y->left = z;
 	else y->right = z;
 }
-
+/* The following code (with a few additions) follows the pseudocode that can be read on page 296 in the book "Introduction to Algorithms Third edition" (ISBN: 978-0-262-03384-8)*/
+void transplant(Node* T, Node* u, Node* v) {
+	Node* parent = new_node(NULL);
+	if (u->parent != NULL)
+		parent = u->parent;
+	if (u->parent == NULL)
+		T = v;
+	else if (u == parent->left)
+		parent->left = v;
+	else parent->right = v;
+	if (v != NULL)
+		v->parent = u->parent;
+}
+/* The following code (with a few additions) follows the pseudocode that can be read on page 298 in the book "Introduction to Algorithms Third edition" (ISBN: 978-0-262-03384-8)*/
+Node* delete(Node* T, Node* z) {
+	Node* y = new_node(NULL);
+	Node* temp = new_node(NULL);
+	if (z->left == NULL)
+		transplant(T, z, z->right);
+	else if (z->right == NULL)
+		transplant(T, z, z->left);
+	else {
+		y = treemin(z->right);
+		if (y->parent != z) {
+			transplant(T, y, y->right);
+			y->right = z->right;
+			temp = y->right;
+			temp->parent = y;
+		}
+		transplant(T, z, y);
+		y->left = z->left;
+		temp = y->left;
+		temp->parent = y;
+	}
+}
 void inordertreewalk(Node* root) {		// print out tree in the correct order
 	if (root != NULL) {
 		inordertreewalk(root->left);			// Goes through left side
@@ -47,7 +93,6 @@ int treemin(Node* root) {
 	return root;
 	//printf("Min: %d\n", root->key);
 }
-
 int treesearch(Node* root, int key) {
 	if ((root == NULL) || (root->key == key))
 		return root;
@@ -56,7 +101,6 @@ int treesearch(Node* root, int key) {
 	return treesearch(root->right, key);
 
 }
-
 int successor(Node* root) {
 	Node* temp = new_node(NULL);
 	if (root->right != NULL) {
@@ -70,7 +114,6 @@ int successor(Node* root) {
 	}
 	return printf("Successor of %d is %d\n", root->key, temp->key);
 }
-
 int predecessor(Node* root) {
 	Node* temp = new_node(NULL);
 	if (root->left != NULL) {
@@ -84,7 +127,6 @@ int predecessor(Node* root) {
 	}
 	return printf("Predecessor of %d is %d\n", root->key, temp->key);
 }
-
 int treeheight(Node* root) {
 	if (root == NULL)
 		return 0;
@@ -97,23 +139,20 @@ int treeheight(Node* root) {
 		else return (rd + 1);
 	}
 }
-
 int treesize(Node* root) {
 	if (root == NULL)
 		return 0;
 	else
 		return(1 + treesize(root->right) + treesize(root->left));
 }
-
-// ********** TREE PRINT OUT *********** 
+// ********** PRINT TREE START *********** 
 void padding(char ch, int n) {
 	int i;
 
 	for (i = 0; i < n; i++)
 		putchar(ch);
 }
-
-void structure(struct node* root, int level) {
+void printTree(struct node* root, int level) {
 	int i;
 
 	if (root == NULL) {
@@ -121,11 +160,17 @@ void structure(struct node* root, int level) {
 		puts("~");
 	}
 	else {
-		structure(root->right, level + 1);
+		printTree(root->right, level + 1);
 		padding('\t', level);
 		printf("%d\n", root->key);
-		structure(root->left, level + 1);
+		printTree(root->left, level + 1);
 	}
 }
+// ********* PRINT TREE END *************/
 
-// ********* TREE PRINT OUT *************
+// *********  CREATE TREE FROM FILE *************/
+void fileToTree(Node* root, int arr[]) {
+	for (int i = 0; i < arr[i]; i++) {
+		insert(root, new_node(arr[i]));
+	}
+}
