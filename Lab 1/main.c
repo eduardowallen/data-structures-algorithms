@@ -3,9 +3,10 @@
 Node* createNode(int key);
 List* createList(int key);
 int main() {
-	List *L1, *L2;				// Creates L1 and L2
+	printf("** Testing the linked list **");
+	List* L1, * L2;				// Creates L1 and L2
 	// Creates lists L1 and L2
-	Node *tempnode1, *tempnode2;		// Creates a temporary node that we can use within the main function
+	Node* tempnode1, * tempnode2;		// Creates a temporary node that we can use within the main function
 	L1 = createList(1);				// Allocates memory and sets its values in createList
 	L2 = createList(2);				// Allocates memory and sets its values in createList
 	// Creates the content for L1 as described in the lab exercise 2 (L1 = [3,1,5,10,8,7])
@@ -148,4 +149,12 @@ int main() {
 	tempnode2 = search(&L1, 7); if (tempnode2 != NULL) tempnode2 = delete(&L1, &tempnode2); print(&L1);
 	tempnode2 = search(&L1, 8); if (tempnode2 != NULL) tempnode2 = delete(&L1, &tempnode2); print(&L1);
 	tempnode2 = search(&L1, 10); if (tempnode2 != NULL) tempnode2 = delete(&L1, &tempnode2); print(&L1);
+
+	/* Queue */
+	printf("\nTesting queue functions\n");
+	Queue();
+
+	/* Stack */
+	printf("\nTesting stack functions\n");
+	Stack();
 }

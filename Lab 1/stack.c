@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include "header_s.h"
+#include "header.h"
 
 #define MAX_ARRAY_SIZE 15
 
@@ -24,7 +23,7 @@ void pop() {
 	}
 }
 
-void display() {
+void display_stack() {
 	if (top <= 0)	// If top is equal or less than 0 the stack is empty
 		printf("Stack underflow.\n");	// Prints it's empty
 	else {
@@ -34,4 +33,23 @@ void display() {
 		}
 		printf("\n");
 	}
+}
+int Stack() {
+	display_stack();	// Execute display function to see numbers in stack 
+	pop();		// Execute pop function to pop the last number
+	// inserts a personal number in the order from top to bottom (10 digits)
+	push(9); // start
+	push(4);
+	push(1);
+	push(2);
+	push(2);
+	push(3);
+	push(4);
+	push(1);
+	push(3);
+	push(1); // end
+	display_stack();	// Displays numbers in stack (9, 4, 1, 2, 2, 3, 4, 1, 3, 1)
+	pop();		// Pops the last inserted number (1)
+	push(2);	// Inserts a number (2) into the stack
+	display_stack();	// Displays numbers in stack (9, 4, 1, 2, 2, 3, 4, 1, 3, 2)
 }

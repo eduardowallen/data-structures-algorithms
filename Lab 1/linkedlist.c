@@ -1,7 +1,7 @@
 ﻿#include "header.h"
 // Created by Eduardo Wallén & Junior Corazza
-// Creates a new node and returns a pointer to it.
 
+// Creates a new node and returns a pointer to it.
 Node* createNode(int key) {
 	Node* newNode = (Node*)malloc(sizeof(Node));	// Allocate memory for the node
 	newNode->data = key;	// Set the data to key
@@ -57,13 +57,13 @@ Node* search(List** L, int key) {
 }
 Node* successor(List** L, Node** N) {
 	Node* tempnode = (*N);
-	if (tempnode->next == NULL) 
+	if (tempnode->next == NULL)
 		printf("\n%p has no successor and is therefore the last node in the list.\n", (*N));
 	return tempnode->next;			// Returns tempnode to main (NULL if empty)
 }
 Node* predecessor(List** L, Node** N) {
 	Node* tempnode = (*N);
-	if (tempnode->prev == NULL) 
+	if (tempnode->prev == NULL)
 		printf("\n%p has no predecessor and is therefore the first node in the list.\n", (*N));
 	return tempnode->prev;			// Returns tempnode to main (NULL if empty)
 }
@@ -122,15 +122,18 @@ Node* delete(List** L, Node** N) {	// Using double pointers because we want to m
 		printf("L%d will be empty after deletion.\n", (*L)->id);
 		(*L)->empty = 0; // Set the list to empty
 		(*L)->node = NULL;
-	} else {
+	}
+	else {
 		if (previousnode == NULL) {			// If we are at head of list, previous should be NULL
 			nextnode->prev = NULL;			// Set the next node->prev to be NULL
 			(*L)->node = nextnode;			// Set the next node to be head of list
 			printf("Head of list should now be %p, (%d)\n", nextnode, nextnode->data);
-		} else if (nextnode == NULL) {		// If we are at end of list
+		}
+		else if (nextnode == NULL) {		// If we are at end of list
 			printf("End of list is now %p (%d)\n", previousnode, previousnode->data);
 			previousnode->next = NULL;
-		} else {							// If we inbetween nodes
+		}
+		else {							// If we inbetween nodes
 			nextnode->prev = previousnode;	// Point past the current node (the next node's prev points to the node before the current node)
 			previousnode->next = nextnode;	// Point past the current node (previous node's next points to the node after the current node)
 			printf("We are in between nodes.\n");

@@ -13,6 +13,7 @@ typedef struct List {
 	int id;				// Integer that we use to see what list ID we are working with
 } List;
 
+/* Linked list functions */
 Node* createNode(int key);
 List* createList(int key);
 void insert(List** L, Node** N);
@@ -24,4 +25,11 @@ Node* maximum(List** L);
 Node* minimum(List** L);
 void print(List** L);
 Node* delete(List** L, Node** N);
-
+/* Queue functions */
+void enqueue(int x);
+void dequeue();
+void display_queue();
+/* Stack functions */
+void push(int x);
+void pop();
+void display_stack();
