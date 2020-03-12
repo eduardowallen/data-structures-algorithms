@@ -1,7 +1,10 @@
+/* Created by Eduardo Wallén & Junior Corazza */
+
 #include "header.h"
 // Declaring these two functions here to avoid the compiler thinking they should return integers.
 Node* createNode(int key);
 List* createList(int key);
+
 int main() {
 	printf("** Testing the linked list **");
 	List* L1, * L2;				// Creates L1 and L2

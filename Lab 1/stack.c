@@ -1,3 +1,5 @@
+/* Created by Eduardo Wallén & Junior Corazza */
+
 #include "header.h"
 
 #define MAX_ARRAY_SIZE 15
