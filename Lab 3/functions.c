@@ -1,5 +1,5 @@
+/* Created by Eduardo Wallén & Junior Corazza */
 #include "header.h"
-#include "load_file.h"
 #pragma warning (disable: 6386 6385 6011 4133 4047) // Disabling some warnings that were a nuisance.
 Node* new_node(int x) {
 	Node* temp = (Node*)malloc(sizeof(Node));
@@ -14,17 +14,6 @@ Node* insert(Node* T, Node* z) {
 	Node* x = new_node(NULL);
 	y = NULL;
 	x = T;
-	if (T == NULL) {
-		/* 
-		Det är här vi måste kolla om trädet är fullt eller inte.
-		I uppgiften står det att vi ska skapa binära träd baserat på problemen i sorting_problems
-		och då måste man kunna skapa ett nytt träd om det inte finns något
-		*/
-		T = new_node(z);
-		printf("T is empty");
-		insert(T, z);
-		exit(0);
-	}
 	while (x != NULL) {
 		y = x;
 		if (z->key < x->key)
@@ -32,8 +21,9 @@ Node* insert(Node* T, Node* z) {
 		else x = x->right;
 	}
 	z->parent = y;
-	if (y == NULL)
+	if (y == NULL) {
 		T = z; // tree T was empty
+	}	
 	else if (z->key < y->key)
 		y->left = z;
 	else y->right = z;
@@ -76,7 +66,7 @@ Node* delete(Node* T, Node* z) {
 void inordertreewalk(Node* root) {		// print out tree in the correct order
 	if (root != NULL) {
 		inordertreewalk(root->left);			// Goes through left side
-		printf("%d\n", root->key);
+		printf("%d ", root->key);
 		inordertreewalk(root->right);			// Goes through right side
 	}
 }
@@ -168,9 +158,14 @@ void printTree(struct node* root, int level) {
 }
 // ********* PRINT TREE END *************/
 
-// *********  CREATE TREE FROM FILE *************/
-void fileToTree(Node* root, int arr[]) {
-	for (int i = 0; i < arr[i]; i++) {
-		insert(root, new_node(arr[i]));
-	}
+/* Function that grows a tree for us */
+void growTree(Node* root) {
+	insert(root, new_node(5));		// Inserts node
+	insert(root, new_node(3));		// Inserts node
+	insert(root, new_node(4));		// Inserts node
+	insert(root, new_node(50));		// Inserts node
+	insert(root, new_node(49));		// Inserts node
+	insert(root, new_node(12));		// Inserts node
+	insert(root, new_node(11));		// Inserts node
+	insert(root, new_node(42));		// Inserts node
 }

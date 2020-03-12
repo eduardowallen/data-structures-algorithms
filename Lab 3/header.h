@@ -1,3 +1,4 @@
+/* Created by Eduardo Wallén & Junior Corazza */
 #include <stdio.h>
 typedef struct node {
 	struct Node* parent;
@@ -21,6 +22,3 @@ int treesize(Node* root);
 void padding(char ch, int n);
 void printTree(struct node* root, int level);
 void growTree(Node* root);
-void fileToTree(Node* root, int arr[]);
-int loadSolution(int x);
-int loadProblem(int x);

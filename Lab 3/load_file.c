@@ -5,7 +5,6 @@
 #include <stdint.h>
 
 #include "load_file.h"
-#define PROBLEMS_PATH "C:/Users/eduar/OneDrive/Plugg/Visual studio projects/data-structures-algorithms/Lab 2/sorting_problems/"
 
 int* load_file(const char* fName)
 {
@@ -31,8 +30,4 @@ int* load_file(const char* fName)
 	}
 	data[0] = num_elements;
 	return data;
-}
-
-char open_file(const char fName[]) {
-	return strcat(PROBLEMS_PATH, fName);
 }

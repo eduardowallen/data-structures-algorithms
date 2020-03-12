@@ -31,7 +31,3 @@ int* load_file(const char* fName)
 	data[0] = num_elements;
 	return data;
 }
-
-char open_file(const char fName[]) {
-	return strcat(PROBLEMS_PATH, fName);
-}
