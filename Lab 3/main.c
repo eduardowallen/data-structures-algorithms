@@ -1,6 +1,6 @@
 /* Created by Eduardo Wallén & Junior Corazza */
 
-#include "header.h"
+#include "binary_tree.h"
 #include "load_file.h"
 char sortingProblem1[] = { "C:/Users/eduar/OneDrive/Plugg/Visual studio projects/data-structures-algorithms/Lab 2/sorting_problems/test-10-1-problem" };
 char sortingSolution1[] = { "C:/Users/eduar/OneDrive/Plugg/Visual studio projects/data-structures-algorithms/Lab 2/sorting_problems/test-10-1-solution" };
@@ -12,10 +12,7 @@ char sortingProblem4[] = { "C:/Users/eduar/OneDrive/Plugg/Visual studio projects
 char sortingSolution4[] = { "C:/Users/eduar/OneDrive/Plugg/Visual studio projects/data-structures-algorithms/Lab 2/sorting_problems/test-100-4-solution" };
 char sortingProblem5[] = { "C:/Users/eduar/OneDrive/Plugg/Visual studio projects/data-structures-algorithms/Lab 2/sorting_problems/test-10-5-problem" };
 char sortingSolution5[] = { "C:/Users/eduar/OneDrive/Plugg/Visual studio projects/data-structures-algorithms/Lab 2/sorting_problems/test-10-5-solution" };
-/*
-Det vi har kvar:
-Delete
-*/
+
 /*
 			 13
 		   /   \

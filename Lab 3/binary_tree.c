@@ -1,6 +1,6 @@
 /* Created by Eduardo Wallén & Junior Corazza */
-#include "header.h"
-#pragma warning (disable: 6386 6385 6011 4133 4047) // Disabling some warnings that were a nuisance.
+#include "binary_tree.h"
+
 Node* new_node(int x) {
 	Node* temp = (Node*)malloc(sizeof(Node));
 	temp->key = x;

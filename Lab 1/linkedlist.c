@@ -67,7 +67,7 @@ Node* successor(List* L, Node* N) {
 			successor = head;
 		head = head->next;
 	}
-	if (successor->data != NULL)
+	if (successor->data != 0)
 		return successor;			// Returns successor (NULL if empty)
 	else return NULL;
 }
@@ -79,7 +79,7 @@ Node* predecessor(List* L, Node* N) {
 			predecessor = head;
 		head = head->next;
 	}
-	if (predecessor->data != NULL)
+	if (predecessor->data != 0)
 		return predecessor;			// Returns predecessor (NULL if empty)
 	else return NULL;
 }
