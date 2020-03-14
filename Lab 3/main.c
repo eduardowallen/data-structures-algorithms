@@ -50,17 +50,19 @@ int main() {
 	// Exercise 2
 	root = NULL; // Clear the tree of its contents before we start
 	printf("\n\n\n----- CREATING NEW TREE BELOW ------\n\n\n");
-	int problem_to_load = sortingProblem4;	// Change this to any of the char arrays (ending with ProblemX where X is a number) at the top of the document
-	int solution_to_load = sortingSolution4; // Change this to any of the char arrays (ending with SolutionX where X is a number) at the top of the document
-	int* L = load_file(problem_to_load); // Loads a file with a problem we want to create the tree with
+	int problem_to_load = sortingProblem4;		// Change this to any of the char arrays (ending with ProblemX where X is a number) at the top of the document
+	int solution_to_load = sortingSolution4;	// Change this to any of the char arrays (ending with SolutionX where X is a number) at the top of the document
+	int* L = load_file(solution_to_load);		// Loads a file with a problem we want to create the tree with
 	root = insert(root, new_node(L[1]));
-	for (int i = 2; i < L[i]; i++) 
+	for (int i = 2; i < L[0]; i++) {
+		//printf("%d ", L[i]);
 		insert(root, new_node(L[i]));
-	printTree(root, 0);
+	}
+	//printTree(root, 0); // Use this to print the tree 
 	printf("\n\n----- Now printing the tree in ascending order ------\n\n");
 	inordertreewalk(root);			// Prints every node out in order
 	printf("\n\n----- Now printing the solution in ascending order ------\n\n");
 	int* S = load_file(solution_to_load); // Prints the solution (in order) to the problem we previously loaded
-	for (int i = 1; i < S[i]; i++)
+	for (int i = 1; i < S[0]; i++)
 		printf("%d ", S[i]);
 }

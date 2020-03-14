@@ -1,163 +1,78 @@
 /* Created by Eduardo Wallén & Junior Corazza */
-
-#include "header.h"
-// Declaring these two functions here to avoid the compiler thinking they should return integers.
-Node* createNode(int key);
-List* createList(int key);
-
+#include "linkedlist.h"
 int main() {
-	printf("** Testing the linked list **");
-	List* L1, * L2;				// Creates L1 and L2
-	// Creates lists L1 and L2
-	Node* tempnode1, * tempnode2;		// Creates a temporary node that we can use within the main function
-	L1 = createList(1);				// Allocates memory and sets its values in createList
-	L2 = createList(2);				// Allocates memory and sets its values in createList
-	// Creates the content for L1 as described in the lab exercise 2 (L1 = [3,1,5,10,8,7])
-	printf("*********************************************************************************************************\n");
-	printf("*******  Creates the content for L1 as described in the lab exercise 2 (L1 = [3, 1, 5, 10, 8, 7])  ******\n");
-	printf("*********************************************************************************************************\n");
-	tempnode1 = createNode(3);		// Creates a node (overwrites the current data in tempnode) and stores it in tempnode1
-	insert(&L1, &tempnode1);		// Inserts the created node into L1
-	tempnode1 = createNode(1);		// Creates a node (overwrites the current data in tempnode) and stores it in tempnode1
-	insert(&L1, &tempnode1);		// Inserts the created node into L1
-	tempnode1 = createNode(5);		// Creates a node (overwrites the current data in tempnode) and stores it in tempnode1
-	insert(&L1, &tempnode1);		// Inserts the created node into L1
-	tempnode1 = createNode(10);		// Creates a node (overwrites the current data in tempnode) and stores it in tempnode1
-	insert(&L1, &tempnode1);		// Inserts the created node into L1
-	tempnode1 = createNode(8);		// Creates a node (overwrites the current data in tempnode) and stores it in tempnode1
-	insert(&L1, &tempnode1);		// Inserts the created node into L1
-	tempnode1 = createNode(7);		// Creates a node (overwrites the current data in tempnode) and stores it in tempnode1
-	insert(&L1, &tempnode1);		// Inserts the created node into L1
+	List* L1, * L2;	// Create pointers to L1 and L2
+
+	// Create lists L1 and L2
+	L1 = createList(1);		// Allocate memory and sets its values in createList
+	L2 = createList(2);		// Allocate memory and sets its values in createList
+
+	// Create the content for L1 as described in the lab exercise 2 (L1 = [3,1,5,10,8,7]) and prints the list for overview
+	insert(L1, createNode(3));insert(L1, createNode(1));insert(L1, createNode(5));insert(L1, createNode(10));insert(L1, createNode(8));insert(L1, createNode(7));print(L1);
 
 	// Exercise 2, minimum and maximum of L1
-	printf("\n\n*****************************************\n");
-	printf("******  Exercise 2, minimum of L1  ******\n");
-	printf("*****************************************\n");
-	tempnode1 = minimum(&L1);		// Searches the list for the smallest key and returns a pointer to the node. If the list is empty the function will return a printf.
-	if (tempnode1 != NULL)
-		printf("Minimum node: data(%d), pointer(%p)\n", tempnode1->data, tempnode1);	// Prints the data in the node returned from Minimum function.
-	printf("*****************************************\n");
+	if (minimum(L1) != NULL) // Searches the list for the smallest key and returns a pointer to the node. If the list is empty the function will return a printf.
+		printf("Minimum node: data(%d), pointer(%p)\n", minimum(L1)->data, minimum(L1));
+	if (maximum(L1) != NULL) // Searches the list for the largest key and returns a pointer to the node. If the list is empty the function will return a printf.
+		printf("Maximum node: data(%d), pointer(%p)\n", maximum(L1)->data, maximum(L1));
 
-	printf("\n\n*****************************************\n");
-	printf("******  Exercise 2, maximum of L1  ******\n");
-	printf("*****************************************\n");
-	tempnode1 = maximum(&L1);		// Searches the list for the largest key and returns a pointer to the node. If the list is empty the function will return a printf.
-	if (tempnode1 != NULL)
-		printf("maximum node: data(%d), pointer(%p)\n", tempnode1->data, tempnode1);	// Prints the data in the node returned from maximum function.
-	printf("*****************************************\n");
-
-	printf("\n\n*****************************************\n");
-	printf("*****  Exercise 2, successor of L1  *****\n");
-	printf("*****************************************\n");
-	tempnode2 = search(&L1, 5);
-	tempnode1 = successor(&L1, &tempnode2);
-	if (tempnode1 != NULL)
-		printf("Successor of node %p is %p\n", tempnode2, tempnode1);	// Prints the data in the node returned from maximum function.
-	printf("*****************************************\n");
-
-	printf("\n\n*****************************************\n");
-	printf("****  Exercise 2, predecessor of L1  ****\n");
-	printf("*****************************************\n");
-	tempnode2 = search(&L1, 5);
-	tempnode1 = predecessor(&L1, &tempnode2);
-	if (tempnode1 != NULL)
-		printf("Predecessor of node %p is %p\n", tempnode2, tempnode1);	// Prints the data in the node returned from maximum function.
-	printf("*****************************************\n");
-
-	// Creates the content for L2 as described in the lab exercise 2 (L2 = [5,2,9,6,1,2])
-	printf("\n\n\n*********************************************************************************************************\n");
-	printf("*******  Creates the content for L2 as described in the lab exercise 2  (L2 = [5, 2, 9, 6, 1, 2])  ******\n");
-	printf("*********************************************************************************************************\n");
-
-	tempnode2 = createNode(5);		// Creates a node (overwrites the current data in tempnode) and stores it in tempnode2
-	insert(&L2, &tempnode2);		// Inserts the created node into L2
-	tempnode2 = createNode(2);		// Creates a node (overwrites the current data in tempnode) and stores it in tempnode2
-	insert(&L2, &tempnode2);		// Inserts the created node into L2
-	tempnode2 = createNode(9);		// Creates a node (overwrites the current data in tempnode) and stores it in tempnode2
-	insert(&L2, &tempnode2);		// Inserts the created node into L2
-	tempnode2 = createNode(6);		// Creates a node (overwrites the current data in tempnode) and stores it in tempnode2
-	insert(&L2, &tempnode2);		// Inserts the created node into L2
-	tempnode2 = createNode(1);		// Creates a node (overwrites the current data in tempnode) and stores it in tempnode2
-	insert(&L2, &tempnode2);		// Inserts the created node into L2
-	tempnode2 = createNode(2);		// Creates a node (overwrites the current data in tempnode) and stores it in tempnode2
-	insert(&L2, &tempnode2);		// Inserts the created node into L2
+	// Exercise 2, successor and predecessor of 5 in L1
+	if (successor(L1, search(L1, 5)) != NULL)
+		printf("Successor of node %p is %p where the successor data is %d\n", search(L1, 5), successor(L1, search(L1, 5)), successor(L1, search(L1, 5))->data);
+	else printf("There is no successor of node %p\n", search(L1, 5));
+	if (predecessor(L1, search(L1, 5)) != NULL)
+		printf("Predecessor of node %p is %p where the predecessor data is %d\n", search(L1, 5), predecessor(L1, search(L1, 5)), predecessor(L1, search(L1, 5))->data);
+	else printf("There is no predecessor of node %p\n", search(L1, 5));
+	
+	// Creates the content for L2 as described in the lab exercise 2 (L2 = [5,2,9,6,1,2]) and prints the list for overview
+	insert(L2, createNode(5));insert(L2, createNode(2));insert(L2, createNode(9));insert(L2, createNode(6));insert(L2, createNode(1));insert(L2, createNode(2));print(L2);
 
 	// Exercise 2, minimum and maximum of L2
-	printf("\n\n*****************************************\n");
-	printf("******  Exercise 2, minimum of L2  ******\n");
-	printf("*****************************************\n");
-	tempnode2 = minimum(&L2);		// Searches the list for the smallest key and returns a pointer to the node. If the list is empty the function will return a printf.
-	if (tempnode2 != NULL)
-		printf("Minimum node: data(%d), pointer(%p)\n", tempnode2->data, tempnode2);	// Prints the data in the node returned from Minimum function.
-	printf("*****************************************\n");
+	// Searches the list for the smallest key and returns a pointer to the node. If the list is empty the function will return a printf.
+	if (minimum(L2) != NULL)
+		printf("Minimum node: data(%d), pointer(%p)\n", minimum(L2)->data, minimum(L2));
+	// Searches the list for the largest key and returns a pointer to the node. If the list is empty the function will return a printf.
+	if (maximum(L2) != NULL)
+		printf("Maximum node: data(%d), pointer(%p)\n", maximum(L2)->data, maximum(L2));	// Prints the data in the node returned from maximum function.
 
-	printf("\n\n*****************************************\n");
-	printf("******  Exercise 2, maximum of L2  ******\n");
-	printf("*****************************************\n");
-	tempnode2 = maximum(&L2);		// Searches the list for the largest key and returns a pointer to the node. If the list is empty the function will return a printf.
-	if (tempnode2 != NULL)
-		printf("maximum node: data(%d), pointer(%p)\n", tempnode2->data, tempnode2);	// Prints the data in the node returned from maximum function.
-	printf("*****************************************\n");
-
-	printf("\n\n*****************************************\n");
-	printf("*****  Exercise 2, successor of L2  *****\n");
-	printf("*****************************************\n");
-	tempnode2 = search(&L2, 9);
-	tempnode1 = successor(&L2, &tempnode2);
-	if (tempnode1 != NULL)
-		printf("Successor of node %p is %p\n", tempnode2, tempnode1);	// Prints the data in the node returned from predecessor function.
-	printf("*****************************************\n");
-
-	printf("\n\n*****************************************\n");
-	printf("****  Exercise 2, predecessor of L2  ****\n");
-	printf("*****************************************\n");
-	tempnode2 = search(&L2, 9);
-	tempnode1 = predecessor(&L2, &tempnode2);
-	if (tempnode1 != NULL)
-		printf("Predecessor of node %p is %p\n", tempnode2, tempnode1);	// Prints the data in the node returned from predecessor function.
-	printf("*****************************************\n");
+	// Exercise 2, successor and predecessor of 9 in L2
+	if (successor(L2, search(L2, 9)) != NULL)
+		printf("Successor of node %p is %p where the successor data is %d\n", search(L2, 9), successor(L2, search(L2, 9)), successor(L2, search(L2, 9))->data);
+	else printf("There is no successor of node %p\n", search(L2, 9));
+	if (predecessor(L2, search(L2, 9)) != NULL)
+		printf("Predecessor of node %p is %p where the predecessor data is %d\n", search(L2, 9), predecessor(L2, search(L2, 9)), predecessor(L2, search(L2, 9))->data);
+	else printf("There is no predecessor of node %p\n", search(L2, 9));
 
 	// Key of predecessor in L2 of the maximum of L1
-	printf("\n\n***************************************************************************\n");
-	printf("*****  Exercise 2, key of the predecessor in L2 of the maximum in L1  *****\n");
-	printf("***************************************************************************\n");
-	tempnode2 = maximum(&L1);
-	tempnode1 = maximum(&L2);
-	if (tempnode2 != NULL) {
-		if (tempnode2->data > tempnode1->data)
-			printf("The predecessor in L2 is node(%p)->data(%d)", tempnode1, tempnode1->data);
-		if (tempnode2->data < tempnode1->data)
-			printf("There is no predecessor in L2 of the maximum key in L1.");
+	if (maximum(L1) != NULL) {
+		if (predecessor(L2, maximum(L1)) != NULL)
+			printf("Predecessor of the maxmimum in L1 (node %p) of L2 is %p where the predecessor data is %d\n", maximum(L1), predecessor(L2, maximum(L1)), predecessor(L2, maximum(L1))->data);
+		else printf("There is no predecessor in L2 of the maximum key in L1\n");
 	}
 	// Key of predecessor in L1 of the maximum of L2
-	printf("\n\n***************************************************************************\n");
-	printf("*****  Exercise 2, key of the predecessor in L1 of the maximum in L2  *****\n");
-	printf("***************************************************************************\n");
-	tempnode2 = maximum(&L2);
-	tempnode1 = maximum(&L1);
-	if (tempnode2 != NULL) {
-		if (tempnode2->data > tempnode1->data)
-			printf("The predecessor in L2 is node(%p)->data(%d)", tempnode1, tempnode1->data);
-		if (tempnode2->data < tempnode1->data)
-			printf("There is no predecessor in L1 of the maximum key in L2.");
+	if (maximum(L2) != NULL) {
+		if (predecessor(L1, maximum(L2)) != NULL)
+			printf("Predecessor of the maxmimum in L1 (node %p) of L2 is %p where the predecessor data is %d\n", maximum(L2), predecessor(L1, maximum(L2)), predecessor(L1, maximum(L2))->data);
+		else printf("There is no predecessor in L1 of the maximum key in L2\n");
 	}
-
+	/*
 	// The following part of the code is used to show that the delete function works as intended.
 	printf("\n\n***************************************************\n");
 	printf("****  Bonus exercise, delete function (on L1)  ****\n");
 	printf("***************************************************\n");
-	tempnode2 = search(&L1, 3); if (tempnode2 != NULL) tempnode2 = delete(&L1, &tempnode2); print(&L1);
-	tempnode2 = search(&L1, 5); if (tempnode2 != NULL) tempnode2 = delete(&L1, &tempnode2); print(&L1);
-	tempnode2 = search(&L1, 1); if (tempnode2 != NULL) tempnode2 = delete(&L1, &tempnode2); print(&L1);
-	tempnode2 = search(&L1, 7); if (tempnode2 != NULL) tempnode2 = delete(&L1, &tempnode2); print(&L1);
-	tempnode2 = search(&L1, 8); if (tempnode2 != NULL) tempnode2 = delete(&L1, &tempnode2); print(&L1);
-	tempnode2 = search(&L1, 10); if (tempnode2 != NULL) tempnode2 = delete(&L1, &tempnode2); print(&L1);
-
-	/* Queue */
+	if (search(L1, 3) != NULL) delete(L1, search(L1, 3)); print(L1);
+	if (search(L1, 5) != NULL) delete(L1, search(L1, 5)); print(L1);
+	if (search(L1, 1) != NULL) delete(L1, search(L1, 1)); print(L1);
+	if (search(L1, 7) != NULL) delete(L1, search(L1, 7)); print(L1);
+	if (search(L1, 8) != NULL) delete(L1, search(L1, 8)); print(L1);
+	if (search(L1, 10) != NULL) delete(L1, search(L1, 10)); print(L1);
+	
+	// Queue
 	printf("\nTesting queue functions\n");
 	Queue();
 
-	/* Stack */
+	// Stack
 	printf("\nTesting stack functions\n");
 	Stack();
+	*/
 }

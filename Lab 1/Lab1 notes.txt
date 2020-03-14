@@ -1,0 +1,21 @@
+## Written by Eduardo Wallén and Junior Corazza 2020-02-21 ##
+The folders are named after each exercise. The output from the programs is self-explanatory.
+
+TEST OF COLLEAGUE CODE BELOW
+
+Tried running dequeue(L1) and we are recieving a pointer, but we don't know what it points to.
+Tested doubly linked list (code of Gunnar Sutter), where the tests returned the expected values (create list, insert node, search node, delete node and search node again).
+
+## UPDATED NOTES 2020-03-14 ##
+The file structure was updated.
+The delete function now properly removes the node from the memory with free(N)
+Main function code was updated to make it easier to read and also removed unnecessary tempnodes that were used previously
+Successor and Predecessor functions updated (now working as intended)
+Unnecessary double pointers have been removed throughout the code
+
+Observation notes:
+on line 8 and 15 where we attempt to set newNode->data = key; we recieve the warning C6011: Dereferencing NULL pointer 'newNode'
+We have yet to understand why this happening and we have discussed it with our classmates but none have been able to help us understand why it is or how to solve it.
+I think you explained this to me (Eduardo) at our latest meeting where we talked about this and much more in the code, but sadly it must have slipped my mind.
+How can we free a node from the memory if we need to return it to the calling function?
+Maybe we can discuss this further at the next lab session.

@@ -1,6 +1,6 @@
 /* Created by Eduardo Wallén & Junior Corazza */
 
-#include "header.h"
+#include "stack.h"
 
 #define MAX_ARRAY_SIZE 15
 
@@ -36,7 +36,7 @@ void display_stack() {
 		printf("\n");
 	}
 }
-int Stack() {
+void Stack() {
 	display_stack();	// Execute display function to see numbers in stack 
 	pop();		// Execute pop function to pop the last number
 	// inserts a personal number in the order from top to bottom (10 digits)

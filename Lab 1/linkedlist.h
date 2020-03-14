@@ -17,20 +17,14 @@ typedef struct List {
 /* Linked list functions */
 Node* createNode(int key);
 List* createList(int key);
-void insert(List** L, Node** N);
-int isEmpty(List** L);
-Node* search(List** L, int key);
-Node* successor(List** L, Node** N);
-Node* predecessor(List** L, Node** N);
-Node* maximum(List** L);
-Node* minimum(List** L);
-void print(List** L);
-Node* delete(List** L, Node** N);
-/* Queue functions */
-void enqueue(int x);
-void dequeue();
-void display_queue();
-/* Stack functions */
-void push(int x);
-void pop();
-void display_stack();
+void insert(List* L, Node* N);
+int isEmpty(List* L);
+Node* search(List* L, int key);
+Node* successor(List* L, Node* N);
+Node* predecessor(List* L, Node* N);
+Node* maximum(List* L);
+Node* minimum(List* L);
+void print(List* L);
+void delete(List* L, Node* N);
+void Stack();
+void Queue();
