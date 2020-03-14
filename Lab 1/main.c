@@ -55,7 +55,7 @@ int main() {
 			printf("Predecessor of the maxmimum in L1 (node %p) of L2 is %p where the predecessor data is %d\n", maximum(L2), predecessor(L1, maximum(L2)), predecessor(L1, maximum(L2))->data);
 		else printf("There is no predecessor in L1 of the maximum key in L2\n");
 	}
-	/*
+	
 	// The following part of the code is used to show that the delete function works as intended.
 	printf("\n\n***************************************************\n");
 	printf("****  Bonus exercise, delete function (on L1)  ****\n");
@@ -74,5 +74,5 @@ int main() {
 	// Stack
 	printf("\nTesting stack functions\n");
 	Stack();
-	*/
+	
 }
