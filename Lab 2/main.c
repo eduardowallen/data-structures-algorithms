@@ -1,5 +1,6 @@
 // Written by Eduardo Wallén and Junior Corazza 2020-03-05
-#include "header.h"
+#include "sorting_algorithms.h"
+#include "load_file.h"
 
 int main() {
 
@@ -18,25 +19,13 @@ int main() {
 	// arrays to use when testing the files, replace the paths with your local path for the sorting problem you want to run. Yes, we could have made this prettier...
 	char sortingProblem1[] = { "C:/Users/eduar/OneDrive/Plugg/Visual studio projects/data-structures-algorithms/Lab 2/sorting_problems/test-10-1-problem" };
 	char sortingSolution1[] = { "C:/Users/eduar/OneDrive/Plugg/Visual studio projects/data-structures-algorithms/Lab 2/sorting_problems/test-10-1-solution" };
-	int* problemArr1 = load_file(sortingProblem1);
-	int* problemArr2 = load_file(sortingProblem1);
-	int* problemArr3 = load_file(sortingProblem1);
-	int* solutionArr1 = load_file(sortingSolution1);
-	int* solutionArr2 = load_file(sortingSolution1);
-	int* solutionArr3 = load_file(sortingSolution1);
 	char sortingProblem2[] = { "C:/Users/eduar/OneDrive/Plugg/Visual studio projects/data-structures-algorithms/Lab 2/sorting_problems/test-100-1-problem" };
 	char sortingSolution2[] = { "C:/Users/eduar/OneDrive/Plugg/Visual studio projects/data-structures-algorithms/Lab 2/sorting_problems/test-100-1-solution" };
-	int* problemArr4 = load_file(sortingProblem2);
-	int* problemArr5 = load_file(sortingProblem2);
-	int* problemArr6 = load_file(sortingProblem2);
-	int* solutionArr4 = load_file(sortingSolution2);
-	int* solutionArr5 = load_file(sortingSolution2);
-	int* solutionArr6 = load_file(sortingSolution2);
-	testProblem(problemArr1, solutionArr1, "merge", "");
-	testProblem(problemArr2, solutionArr2, "insert", "asc");
-	testProblem(problemArr3, solutionArr3, "insert", "desc");
-	testProblem(problemArr4, solutionArr4, "merge", "");
-	testProblem(problemArr5, solutionArr5, "insert", "asc");
-	testProblem(problemArr6, solutionArr6, "insert", "desc");
+	testProblem(load_file(sortingProblem1), load_file(sortingSolution1), "merge", "");
+	testProblem(load_file(sortingProblem1), load_file(sortingSolution1), "insert", "asc");
+	testProblem(load_file(sortingProblem1), load_file(sortingSolution1), "insert", "desc");
+	testProblem(load_file(sortingProblem2), load_file(sortingSolution2), "merge", "");
+	testProblem(load_file(sortingProblem2), load_file(sortingSolution2), "insert", "asc");
+	testProblem(load_file(sortingProblem2), load_file(sortingSolution2), "insert", "desc");
 	
 }

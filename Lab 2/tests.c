@@ -1,5 +1,5 @@
 // Written by Eduardo Wallén and Junior Corazza 2020-03-05
-#include "header.h"
+#include "sorting_algorithms.h"
 #define ARR_LEN 6
 #define PNR_LEN 10
 #define NUM(a) (sizeof(a) / sizeof(*a))

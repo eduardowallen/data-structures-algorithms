@@ -1,6 +1,7 @@
 // Written by Eduardo Wallén and Junior Corazza 2020-03-05
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define ARR_LEN 6
 #define PNR_LEN 10
 
@@ -18,3 +19,5 @@ void testMergeSort_L1();
 void testMergeSort_L2();
 void testMergeSort_pnum();
 void resetLists();
+void testProblem(int arr[], int solution[], char type[], char order[]);
+int* load_file(const char* fName);
