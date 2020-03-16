@@ -10,8 +10,7 @@ Node* new_node(int x) {
 	return temp;
 }
 Node* insert(Node* T, Node* z) {
-	Node* y = (Node*)malloc(sizeof(Node));
-	Node* x = (Node*)malloc(sizeof(Node));
+	Node* y, * x;
 	y = NULL;
 	x = T;
 	while (x != NULL) {
@@ -31,21 +30,33 @@ Node* insert(Node* T, Node* z) {
 }
 /* The following code (with a few additions) follows the pseudocode that can be read on page 296 in the book "Introduction to Algorithms Third edition" (ISBN: 978-0-262-03384-8)*/
 void transplant(Node* T, Node* u, Node* v) {
-	Node* parent = new_node(0);
+	Node* parent_n;
 	if (u->parent != NULL)
-		parent = u->parent;
+		parent_n = u->parent;
 	if (u->parent == NULL)
 		T = v;
-	else if (u == parent->left)
-		parent->left = v;
-	else parent->right = v;
+	else if (u == parent_n->left)
+		parent_n->left = v;
+	else parent_n->right = v;
 	if (v != NULL)
 		v->parent = u->parent;
 }
+void tree_delete(Node* T, Node* z) {
+	while (z->right != NULL)
+		tree_delete(T, z->right);
+	while (z->left != NULL)
+		tree_delete(T, z->left);
+	printf("Deleting key: %d\n", z->key);
+	delete(T, z);
+	if (z == T) {
+		printf("Freeing the tree from the memory\n");
+		free(T);
+		printf("Tree has been emptied completely.\n");
+	}
+}
 /* The following code (with a few additions) follows the pseudocode that can be read on page 298 in the book "Introduction to Algorithms Third edition" (ISBN: 978-0-262-03384-8)*/
 void delete(Node* T, Node* z) {
-	Node* y = new_node(0);
-	Node* temp = new_node(0);
+	Node* y, * temp;
 	if (z->left == NULL)
 		transplant(T, z, z->right);
 	else if (z->right == NULL)
@@ -64,74 +75,72 @@ void delete(Node* T, Node* z) {
 		temp->parent = y;
 	}
 }
-void inordertreewalk(Node* root) {		// print out tree in the correct order
-	if (root != NULL) {
-		inordertreewalk(root->left);			// Goes through left side
-		printf("%d ", root->key);
-		inordertreewalk(root->right);			// Goes through right side
+void inordertreewalk(Node* T) {		// print out tree in the correct order
+	if (T != NULL) {
+		inordertreewalk(T->left);			// Goes through left side
+		printf("%d ", T->key);
+		inordertreewalk(T->right);			// Goes through right side
 	}
 }
-Node* treemax(Node* root) {
+Node* treemax(Node* x) {
 
-	while (root->right != NULL)
-		root = root->right;
-	return root;
+	while (x->right != NULL)
+		x = x->right;
+	return x;
 }
-Node* treemin(Node* root) {
-	while (root->left != NULL)
-		root = root->left;
-	return root;
+Node* treemin(Node* x) {
+	while (x->left != NULL)
+		x = x->left;
+	return x;
 }
-Node* treesearch(Node* root, int key) {
-	if ((root == NULL) || (root->key == key))
-		return root;
-	if (root->key > key)
-		return treesearch(root->left, key);
-	return treesearch(root->right, key);
+Node* treesearch(Node* T, int key) {
+	if ((T == NULL) || (T->key == key))
+		return T;
+	if (T->key > key)
+		return treesearch(T->left, key);
+	return treesearch(T->right, key);
 
 }
-Node* successor(Node* root) {
-	Node* temp = new_node(0);
-	if (root->right != NULL) {
-		temp = treemin(root->right);
-		return temp;
+Node* successor(Node* N) {
+	Node* temp;
+	if (N->right != NULL) {
+		return treemin(N->right);
 	}
-	temp = root->parent;
-	while ((temp != NULL) && (root == temp->right)) {
-		root = temp;
+	temp = N->parent;
+	while ((temp != NULL) && (N == temp->right)) {
 		temp = temp->parent;
 	}
 	return temp;
 }
-Node* predecessor(Node* root) {
+Node* predecessor(Node* z) {
 	Node* temp = new_node(0);
-	if (root->left != NULL) {
-		return treemax(root->left);
+	if (z->left != NULL) {
+		return treemax(z->left);
 	}
-	temp = root->parent;
-	while ((temp != NULL) && (root == temp->left)) {
-		root = temp;
+	temp = z->parent;
+	while ((temp != NULL) && (z == temp->left)) {
+		z = temp;
 		temp = temp->parent;
 	}
 	return temp;
 }
-int treeheight(Node* root) {
-	if (root == NULL)
+int treeheight(Node* T) {
+	if (T == NULL)
 		return 0;
 	else
 	{
-		int rd = treeheight(root->right);
-		int ld = treeheight(root->left);
+		int rd = treeheight(T->right);
+		int ld = treeheight(T->left);
 		if (ld > rd)
 			return (ld + 1);
 		else return (rd + 1);
 	}
 }
-int treesize(Node* root) {
-	if (root == NULL)
+int treesize(Node* T) {
+	if (T == NULL)
 		return 0;
 	else
-		return(1 + treesize(root->right) + treesize(root->left));
+		return(1 + treesize(T->right) + treesize(T->left));
 }
 // ********** PRINT TREE START *********** 
 void padding(char ch, int n) {
@@ -140,28 +149,28 @@ void padding(char ch, int n) {
 	for (i = 0; i < n; i++)
 		putchar(ch);
 }
-void printTree(Node* root, int level) {
-	if (root == NULL) {
+void printTree(Node* T, int level) {
+	if (T == NULL) {
 		padding('\t', level);
 		puts("~");
 	}
 	else {
-		printTree(root->right, level + 1);
+		printTree(T->right, level + 1);
 		padding('\t', level);
-		printf("%d\n", root->key);
-		printTree(root->left, level + 1);
+		printf("%d\n", T->key);
+		printTree(T->left, level + 1);
 	}
 }
 // ********* PRINT TREE END *************/
 
 /* Function that grows a tree for us */
-void growTree(Node* root) {
-	insert(root, new_node(5));		// Inserts node
-	insert(root, new_node(3));		// Inserts node
-	insert(root, new_node(4));		// Inserts node
-	insert(root, new_node(50));		// Inserts node
-	insert(root, new_node(49));		// Inserts node
-	insert(root, new_node(12));		// Inserts node
-	insert(root, new_node(11));		// Inserts node
-	insert(root, new_node(42));		// Inserts node
+void growTree(Node* T) {
+	insert(T, new_node(5));		// Inserts node
+	insert(T, new_node(3));		// Inserts node
+	insert(T, new_node(4));		// Inserts node
+	insert(T, new_node(50));		// Inserts node
+	insert(T, new_node(49));		// Inserts node
+	insert(T, new_node(12));		// Inserts node
+	insert(T, new_node(11));		// Inserts node
+	insert(T, new_node(42));		// Inserts node
 }
