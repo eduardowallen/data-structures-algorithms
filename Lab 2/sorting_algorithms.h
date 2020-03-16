@@ -20,4 +20,3 @@ void testMergeSort_L2();
 void testMergeSort_pnum();
 void resetLists();
 void testProblem(int arr[], int solution[], char type[], char order[]);
-int* load_file(const char* fName);
