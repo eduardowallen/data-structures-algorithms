@@ -6,7 +6,7 @@ typedef struct node_t {
 	struct node_t* parent;
 	int key;
 	struct node_t* left;	// left child
-	struct node_t* right; // right child
+	struct node_t* right;	// right child
 } Node;
 
 Node* new_node(int x);

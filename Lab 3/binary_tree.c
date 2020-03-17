@@ -3,6 +3,10 @@
 
 Node* new_node(int x) {
 	Node* temp = (Node*)malloc(sizeof(Node));
+	if (temp == NULL) {
+		printf("Could not allocate memory for the node.");
+		return 1;
+	}
 	temp->key = x;
 	temp->left = NULL;
 	temp->right = NULL;
@@ -101,13 +105,13 @@ Node* treesearch(Node* T, int key) {
 	return treesearch(T->right, key);
 
 }
-Node* successor(Node* N) {
+Node* successor(Node* z) {
 	Node* temp;
-	if (N->right != NULL) {
-		return treemin(N->right);
+	if (z->right != NULL) {
+		return treemin(z->right);
 	}
-	temp = N->parent;
-	while ((temp != NULL) && (N == temp->right)) {
+	temp = z->parent;
+	while ((temp != NULL) && (z == temp->right)) {
 		temp = temp->parent;
 	}
 	return temp;
@@ -168,9 +172,9 @@ void growTree(Node* T) {
 	insert(T, new_node(5));		// Inserts node
 	insert(T, new_node(3));		// Inserts node
 	insert(T, new_node(4));		// Inserts node
-	insert(T, new_node(50));		// Inserts node
-	insert(T, new_node(49));		// Inserts node
-	insert(T, new_node(12));		// Inserts node
-	insert(T, new_node(11));		// Inserts node
-	insert(T, new_node(42));		// Inserts node
+	insert(T, new_node(50));	// Inserts node
+	insert(T, new_node(49));	// Inserts node
+	insert(T, new_node(12));	// Inserts node
+	insert(T, new_node(11));	// Inserts node
+	insert(T, new_node(42));	// Inserts node
 }

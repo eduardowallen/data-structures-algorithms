@@ -4,6 +4,10 @@
 // Creates a new node and returns a pointer to it.
 Node* createNode(int key) {
 	Node* newNode = (Node*)malloc(sizeof(Node));	// Allocate memory for the node
+	if (newNode == NULL) {
+		printf("Could not allocate memory for the node.");
+		return 1;
+	}
 	newNode->data = key;	// Set the data to key
 	newNode->prev = NULL;	// Set prev to NULL
 	newNode->next = NULL;	// Set next to NULL
@@ -11,6 +15,10 @@ Node* createNode(int key) {
 }
 List* createList(int key) {
 	List* newList = (List*)malloc(sizeof(List));	// Allocate memory for the list
+	if (newList == NULL) {
+		printf("Could not allocate memory for the list.");
+		return 1;
+	}
 	newList->empty = 0;		// Set empty to 0
 	newList->id = key;		// Set id to key
 	return newList;			// Return the list
