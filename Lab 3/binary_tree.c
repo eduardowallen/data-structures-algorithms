@@ -113,7 +113,7 @@ Node* successor(Node* N) {
 	return temp;
 }
 Node* predecessor(Node* z) {
-	Node* temp = new_node(0);
+	Node* temp;
 	if (z->left != NULL) {
 		return treemax(z->left);
 	}
