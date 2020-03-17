@@ -5,7 +5,7 @@ Node* new_node(int x) {
 	Node* temp = (Node*)malloc(sizeof(Node));
 	if (temp == NULL) {
 		printf("Could not allocate memory for the node.");
-		return 1;
+		return NULL;
 	}
 	temp->key = x;
 	temp->left = NULL;

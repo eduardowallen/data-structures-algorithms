@@ -6,7 +6,7 @@ Node* createNode(int key) {
 	Node* newNode = (Node*)malloc(sizeof(Node));	// Allocate memory for the node
 	if (newNode == NULL) {
 		printf("Could not allocate memory for the node.");
-		return 1;
+		return NULL;
 	}
 	newNode->data = key;	// Set the data to key
 	newNode->prev = NULL;	// Set prev to NULL
@@ -17,7 +17,7 @@ List* createList(int key) {
 	List* newList = (List*)malloc(sizeof(List));	// Allocate memory for the list
 	if (newList == NULL) {
 		printf("Could not allocate memory for the list.");
-		return 1;
+		return NULL;
 	}
 	newList->empty = 0;		// Set empty to 0
 	newList->id = key;		// Set id to key
