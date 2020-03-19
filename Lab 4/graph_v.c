@@ -47,6 +47,22 @@ void addUndirectedEdge(Graph* graph, int v1, int v2) {
 	newNode->next = graph->array[v2].head;	// Points v1->next to v2
 	graph->array[v2].head = newNode;		// Sets v1 to be the first in the AdjList of the vertice
 }
+// Print the adjacency list representation of graph
+void printGraph(Graph* graph)
+{
+	int v;
+	for (v = 0; v < graph->V; ++v)
+	{
+		Node* temp = graph->array[v].head;
+		printf("\n Adjacency list of vertex %d\n head ", v);
+		while (temp)
+		{
+			printf("-> %d", temp->data);
+			temp = temp->next;
+		}
+		printf("\n");
+	}
+}
 
 int hasEdge(int v1, int v2) {
 
