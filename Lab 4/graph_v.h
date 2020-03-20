@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 typedef struct node_t {
 	int data;					// Integer that we store the node data into
 	struct node_t* next;	// Pointer to the next node

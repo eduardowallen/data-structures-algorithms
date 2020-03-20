@@ -47,6 +47,44 @@ void addUndirectedEdge(Graph* graph, int v1, int v2) {
 	newNode->next = graph->array[v2].head;	// Points v1->next to v2
 	graph->array[v2].head = newNode;		// Sets v1 to be the first in the AdjList of the vertice
 }
+
+int getNumEdges(Graph* graph) {
+	int sum = 0;
+	for (int i = 0; i < graph->V; i++) {
+		Node* temp = graph->array[i].head;
+		while (temp) {
+			temp = temp->next;
+			sum++;
+		}
+	}
+	return sum;
+}
+
+int getNeighbour(Graph* graph, int v1) {
+	Node* temp = graph->array[v1].head;
+	printf("Vertices connected to %d: ", v1);
+	while (temp) {
+		printf("%d | ", temp->data);
+		temp = temp->next;
+	}
+	printf("\n");
+}
+
+int hasEdge(Graph* graph, int v1, int v2) {
+	int i;
+	if (v1 == v2)
+		return 1;
+	Node* temp = graph->array[v1].head;
+	for (i = 0; i < graph->V; i++) {
+		if (temp->data == v2) {
+			return 1;
+			break;
+		}
+		else temp = temp->next;
+	}
+	return 0;
+}
+
 // Print the adjacency list representation of graph
 void printGraph(Graph* graph)
 {
@@ -54,16 +92,12 @@ void printGraph(Graph* graph)
 	for (v = 0; v < graph->V; ++v)
 	{
 		Node* temp = graph->array[v].head;
-		printf("\n Adjacency list of vertex %d\n head ", v);
+		printf("Adjacency list of vertex %d\n", v);
 		while (temp)
 		{
-			printf("-> %d", temp->data);
+			printf("| %d ", temp->data);
 			temp = temp->next;
 		}
-		printf("\n");
+		printf("|\n");
 	}
-}
-
-int hasEdge(int v1, int v2) {
-
 }
