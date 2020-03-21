@@ -20,7 +20,9 @@ int main() {
 	addDirectedEdge(graph, 4, 3);
 	addDirectedEdge(graph, 3, 1);
 	addDirectedEdge(graph, 6, 2);
-	printf("%d \n", getNumEdges(graph));
+	printf("Vertices: %d\n", getNumVertices(graph));
+	printf("Edges: %d \n", getNumEdges(graph));
 	getNeighbour(graph, 4);
 	printGraph(graph);
+	printf("%d", hasEdge(graph, 3, 1));
 }
