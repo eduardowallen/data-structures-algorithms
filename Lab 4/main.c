@@ -22,7 +22,7 @@ int main() {
 	addDirectedEdge(graph, 6, 2);
 	printf("Vertices: %d\n", getNumVertices(graph));
 	printf("Edges: %d \n", getNumEdges(graph));
-	getNeighbour(graph, 4);
+	getNeighbours(graph, 4);
 	printGraph(graph);
 	printf("%d", hasEdge(graph, 3, 1));
 }

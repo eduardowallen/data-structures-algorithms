@@ -18,12 +18,14 @@ typedef struct graph_t {
 	AdjList* array;
 } Graph;
 
-Node* createNode(int key);
 Graph* CreateGraph(int V);
+Node* createNode(int key);
 int getNumVertices(Graph* graph);
+int getNumEdges(Graph* graph);
+int getNeighbours(Graph* graph, int v1);
+int getInNeighbours(Graph* graph, int v1);
+int getOutNeighbours(Graph* graph, int v1);
 void addDirectedEdge(Graph* graph, int v1, int v2);
 void addUndirectedEdge(Graph* graph, int v1, int v2);
-int getNumEdges(Graph* graph);
-int getNeighbour(Graph* graph, int v1);
 int hasEdge(Graph* graph, int v1, int v2);
 void printGraph(Graph* graph);
