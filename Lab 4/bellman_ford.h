@@ -13,3 +13,6 @@ typedef struct graph {
 	int E;	// Edges
 	Edge* edges;
 } Graph;
+
+Graph* creategraph(int V, int E);
+int Bellman_Ford(Graph* graphs, int S);

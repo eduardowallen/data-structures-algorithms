@@ -2,6 +2,8 @@
 
 Graph* creategraph(int V, int E) {
 	Graph* graphs = (Graph*)malloc(sizeof(Graph));
+	if (graphs == NULL)
+		return NULL;
 	graphs->V = V;
 	graphs->E = E;
 	graphs->edges = (Edge*)malloc(graphs->E * sizeof(Edge));
