@@ -13,12 +13,12 @@ Graph* CreateGraph(int V) {
 	}
 	else return NULL;
 }
-Node* createNode(int key) {
-	Node* newNode = (Node*)malloc(sizeof(Node));	// Allocate memory for the node
-	if (newNode != NULL) {							// Check if memory was allocated
-		newNode->data = key;
-		newNode->next = NULL;
-		return newNode;
+Edge* createEdge(int key) {
+	Edge* newEdge = (Edge*)malloc(sizeof(Edge));	// Allocate memory for the edge
+	if (newEdge != NULL) {							// Check if memory was allocated
+		newEdge->data = key;
+		newEdge->next = NULL;
+		return newEdge;
 	}
 	printf("The memory could not be allocated.\n");
 	return NULL;
@@ -29,7 +29,7 @@ int getNumVertices(Graph* graph){
 int getNumEdges(Graph* graph) {
 	int sum = 0;
 	for (int i = 0; i < graph->V; i++) {
-		Node* temp = graph->array[i].head;
+		Edge* temp = graph->array[i].head;
 		while (temp) {
 			temp = temp->next;
 			sum++;
@@ -37,38 +37,49 @@ int getNumEdges(Graph* graph) {
 	}
 	return sum;
 }
-int getNeighbours(Graph* graph, int v1) {
-	Node* temp = graph->array[v1].head;
-	printf("Vertices connected to %d: ", v1);
+void getNeighbours(Graph* graph, int v1) {
+	getInNeighbours(graph, v1);
+	getOutNeighbours(graph, v1);
+}
+void getInNeighbours(Graph* graph, int v1) {
+	Edge* temp;
+	printf("Incoming neighbours connected to %d: ", v1);
+	for (int i = 0; i < graph->V; i++) {
+		temp = graph->array[i].head;
+		if (i != v1) {
+			while (temp) {
+				if (temp->data == v1)
+					printf("%d | ", i);
+				temp = temp->next;
+			}
+		}
+	}
+	printf("\n");
+}
+void getOutNeighbours(Graph* graph, int v1) {
+	Edge* temp = graph->array[v1].head;
+	printf("Outgoing neighbours connected to %d: ", v1);
 	while (temp) {
 		printf("%d | ", temp->data);
 		temp = temp->next;
 	}
 	printf("\n");
 }
-int getInNeighbours(Graph* graph, int v1) {
+// Adding a directed edge from v1 ---> v2
+void addDirectedEdge(Graph* graph, int v1, int v2) {	// vertice we want to origin from (v1), vertice we want to point to (v2)
+	Edge* newEdge = createEdge(v2);			// Create a new edge, pointing to v2
+	newEdge->next = graph->array[v1].head;	// Points v1 to v2
+	graph->array[v1].head = newEdge;		// Sets v2 to be the first in the AdjList of v1
 }
-int getOutNeighbours(Graph* graph, int v1) {
-}
-void addDirectedEdge(Graph* graph, int v1, int v2) {
-	Node* newNode = createNode(v2);			// Create a new node for v2
-	newNode->next = graph->array[v1].head;	// Points v2->next to v1 
-	graph->array[v1].head = newNode;		// Sets v2 to be the first in the AdjList of the vertice
-} // Adding a directed edge from v1 ---> v2
-void addUndirectedEdge(Graph* graph, int v1, int v2) { // graph->array[0].head | Add an undirected edge between v1 and v2
-	Node* newNode = createNode(v2);			// Creates a new node for v2
-	newNode->next = graph->array[v1].head;	// Points v2->next to v1
-	graph->array[v1].head = newNode;		// Sets v2 to be the first in the AdjList of the vertice
-	// Adding an edge from v2 to v1 as the graph is undirected.
-	newNode = createNode(v1);				// Creates a new node for v1
-	newNode->next = graph->array[v2].head;	// Points v1->next to v2
-	graph->array[v2].head = newNode;		// Sets v1 to be the first in the AdjList of the vertice
+void addUndirectedEdge(Graph* graph, int v1, int v2) {
+	addDirectedEdge(graph, v1, v2);
+	addDirectedEdge(graph, v2, v1); // Adding an edge from v2 to v1 as the graph is undirected.
 }
 int hasEdge(Graph* graph, int v1, int v2) {
 	int i;
 	if (v1 == v2)
 		return 1;
-	Node* temp = graph->array[v1].head;
+	Edge* temp = graph->array[v1].head;
 	for (i = 0; i < graph->V; i++) {
 		if (temp->data == v2) {
 			return 1;
@@ -83,7 +94,7 @@ void printGraph(Graph* graph) // Print the adjacency list representation of grap
 	int v;
 	for (v = 0; v < graph->V; ++v)
 	{
-		Node* temp = graph->array[v].head;
+		Edge* temp = graph->array[v].head;
 		printf("Adjacency list of vertex %d\n", v);
 		while (temp)
 		{
