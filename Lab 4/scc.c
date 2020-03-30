@@ -2,7 +2,7 @@
 #include "scc.h"
 
 Stack_s* CreateStack(int cap) {
-	Stack_s* temp = (Stack_s*)malloc(sizeof(Stack_s));
+	Stack_s* temp = malloc(sizeof(Stack_s));
 	if (temp == NULL)
 		return NULL;
 	temp->cap = cap;
@@ -12,11 +12,11 @@ Stack_s* CreateStack(int cap) {
 }
 
 Graph_s* CreateGraph_scc(int V) {
-	Graph_s* graph = (Graph_s*)malloc(sizeof(Graph_s));
+	Graph_s* graph = malloc(sizeof(Graph_s));
 	if (graph == NULL) // Check if memory was allocated
 		return NULL;
 	graph->V = V;
-	graph->array = (Node_s*)malloc(V * sizeof(Node_s));
+	graph->array = malloc(V * sizeof(Node_s));
 	if (graph->array != NULL) {
 		for (int i = 0; i < V; ++i)
 			graph->array[i] = NULL;
@@ -26,7 +26,7 @@ Graph_s* CreateGraph_scc(int V) {
 }
 
 Node_s* CreateNode_scc(int key) {
-	Node_s* newNode = (Node_s*)malloc(sizeof(Node_s));
+	Node_s* newNode = malloc(sizeof(Node_s));
 	if (newNode != NULL) {
 		newNode->V = key;
 		newNode->next = NULL;
@@ -77,7 +77,7 @@ void DFS(Stack_s* stack, Graph_s* graph, int v, int visited[]) {
 //Create a new adjacency list and copy the older one in reverse order
 Graph_s* GetReverse(Graph_s* graph) {
 	int i;
-	graph->array2 = (Node_s*)malloc(sizeof(Node_s) *graph->V);
+	graph->array2 = malloc(sizeof(Node_s)*graph->V);
 	if (graph->array2 != NULL) {
 		for (int i = 0; i < graph->V; ++i)
 			graph->array2[i] = NULL;
