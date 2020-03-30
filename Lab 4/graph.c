@@ -55,7 +55,7 @@ List* getNeighbours(Graph* graph, Vertice* V) {
 	List* out_list = getOutNeighbours(graph, V);
 	LNode* current_vertice = in_list->sentinel->next;
 	LNode* tmp_vertice = NULL;
-	while (current_vertice != in_list->sentinel->next) {
+	while (current_vertice != in_list->sentinel) {
 		tmp_vertice = createNode(current_vertice->key);
 		insertNode(return_list, tmp_vertice);
 		current_vertice = current_vertice->next;
