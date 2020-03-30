@@ -1,5 +1,4 @@
 #include "graph.h"
-#define MAX_ARRAY_SIZE 10
 
 // V is the amount of vertices we want the graph to hold.
 Graph* createGraph(int V) {
