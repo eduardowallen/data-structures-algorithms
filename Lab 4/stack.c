@@ -1,4 +1,4 @@
-#include "stack.h";
+#include "stack.h"
 
 /* This code only includes relevant functions to meet the conditions of Lab 4 */
 // Creates the stack
