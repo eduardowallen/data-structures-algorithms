@@ -1,5 +1,4 @@
 #pragma once
-#include "linkedlist.h";
 
 typedef struct stack {
 	List* list;
