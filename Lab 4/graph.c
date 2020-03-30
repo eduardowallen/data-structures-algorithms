@@ -1,3 +1,4 @@
+/* Created by Eduardo Wallén & Junior Corazza */
 #include "graph.h"
 
 // V is the amount of vertices we want the graph to hold.

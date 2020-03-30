@@ -1,3 +1,4 @@
+/* Created by Eduardo Wallén & Junior Corazza */
 #include "graph.h"
 
 #define MAP_WIDTH 12

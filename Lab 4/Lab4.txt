@@ -1,3 +1,5 @@
+/* Created by Eduardo Wallén & Junior Corazza */
+
 The code for Lab 4 has been broken down into three different projects.
 The exercises are broken down into separate folders, where each folder name represents the exercises they contain.
 The folders should be loaded into its own project to avoid multiple instances of main.
@@ -5,3 +7,27 @@ Testing on the code of a colleague was made on Gunnar Stutter's code where we te
 We added different combinations of edges onto different sizes of the graph and we were pleased with the result.
 We also tested the traversal through the map (exercise 2) where we changed the ending vertice to be at an unaccessible point (5,9) which returned inf (not accessible)
 and we also tested the reverse-path (1,6) to (1,1) which worked perfectly.
+
+To complete this lab, we have used notes from the lectures, as well as theory explained in videos from mycodeschool on youtube.
+
+Files to load as different projects:
+	Lab 4, Exercise 1 & 2
+		graph.c
+		graph.h
+		linkedlist.c
+		linkedlist.h
+		queue.c
+		queue.h
+		stack.c
+		stack.h
+		main.c
+
+	Lab 4, Exercise 3
+		ssc.c
+		ssc.h
+		ssc_main.c
+
+	Lab 4, Exercise 4
+		bellman_ford.c
+		bellman_ford.h
+		bellman_ford_main.c

@@ -1,3 +1,4 @@
+/* Created by Eduardo Wallén & Junior Corazza */
 #pragma once
 #include "linkedlist.h"
 
