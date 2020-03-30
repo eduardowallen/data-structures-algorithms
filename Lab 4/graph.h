@@ -1,9 +1,8 @@
 /* Created by Eduardo Wallén & Junior Corazza */
 #pragma once
 #include <math.h>
-#include "linkedList.h"
+#include "linkedlist.h"
 #include "stack.h"
-//#include "queue.h"
 
 #define VERT_COLOR_WHITE 0
 #define VERT_COLOR_GREY 1

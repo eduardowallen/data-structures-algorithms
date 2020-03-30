@@ -1,5 +1,6 @@
 #include "stack.h"
-/* This code only includes relevant functions to meet the conditions of Lab 4*/
+
+/* This code only includes relevant functions to meet the conditions of Lab 4 */
 // Creates the stack
 Stack* createStack() {
 	Stack* init_stack = malloc(sizeof(Stack));
@@ -37,12 +38,4 @@ int pop(Stack* stack) {
 	int val = tempnode->key; // Grab the value of the tempnodes key before we free it from memory
 	free(tempnode);	// Free the memory of the node
 	return val;	// Return the value that was in the (now deleted) node.
-}
-
-// Takes an array of ints and fills the stack, returns true if successful, false if not
-bool fillStack(Stack* stack, int* fill_arr, int arr_size) {
-	for (int i = 0; i < arr_size; i++)
-		if (!pushStack(stack, fill_arr[i]))
-			return false;
-	return true;
 }
