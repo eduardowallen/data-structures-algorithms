@@ -52,6 +52,7 @@ List* getNeighbours(Graph* graph, Vertice* V) {
 	List* return_list = createList(NULL, 0);
 	List* in_list = getInNeighbours(graph, V);
 	List* out_list = getOutNeighbours(graph, V);
+
 	LNode* current_vertice = in_list->sentinel->next;
 	LNode* tmp_vertice = NULL;
 	while (current_vertice != in_list->sentinel) {
@@ -60,12 +61,13 @@ List* getNeighbours(Graph* graph, Vertice* V) {
 		current_vertice = current_vertice->next;
 	}
 	current_vertice = out_list->sentinel->next;
-	while (current_vertice != out_list->sentinel)
+	while (current_vertice != out_list->sentinel) {
 		if (!searchList(return_list, current_vertice->key)) {
 			tmp_vertice = createNode(current_vertice->key);
 			insertNode(return_list, tmp_vertice);
 			current_vertice = current_vertice->next;
 		}
+	}
 	return return_list;
 }
 List* getInNeighbours(Graph* graph, Vertice* V) {
@@ -79,14 +81,15 @@ List* getInNeighbours(Graph* graph, Vertice* V) {
 	return return_list;
 }
 List* getOutNeighbours(Graph* graph, Vertice* V) {
-	List* return_list = createList(NULL, 0);
-	LNode* tmp_node = NULL;
-	for (int i = 0; i < graph->size; i++)
-		if (searchList(graph->vertices[i].edgeList, V->key)) {
-			tmp_node = createNode(i);
-			insertNode(return_list, tmp_node);
-		}
-	return return_list;
+	List* templist = createList(NULL, 0);
+	LNode* tempvert = V->edgeList->sentinel->next;
+	LNode* tempnode = NULL;
+	while (tempvert != V->edgeList->sentinel) {
+		tempnode = createNode(tempvert->key);
+		insertNode(templist, tempnode);
+		tempvert = tempvert->next;
+	}
+	return templist;
 }
 // Adding a directed edge from v1 ---> v2
 void addDirectedEdge(Vertice* v1, Vertice* v2) {
@@ -112,4 +115,39 @@ void addUndirectedEdge(Vertice* v1, Vertice* v2) {
 			insertNode(v2->edgeList, newEdge);
 		}
 	}
+}
+float* graphBFS(Graph* graph, Vertice* search_vert) {
+	float* dist_arr = malloc(sizeof(float) * graph->size);
+	if (dist_arr == NULL) {
+		printf("Unable to allocate memory for distance array in BFS!");
+		return NULL;
+	}
+	int* path_predecessor = malloc(sizeof(int) * graph->size);
+	if (path_predecessor == NULL) {
+		return NULL;
+	}
+	for (int vert_counter = 0; vert_counter < graph->size; vert_counter++) {
+		dist_arr[vert_counter] = INFINITY;
+		path_predecessor[vert_counter] = vert_counter;
+	}
+	dist_arr[search_vert->key] = 0;
+	Queue* BFS_Queue = init_queue();
+	enqueue(BFS_Queue, search_vert->key);
+	int current_vert_val = 0;
+	int num_ques = 0;
+	while (!queue_empty(BFS_Queue)) {
+		num_ques++;
+		current_vert_val = dequeue(BFS_Queue);
+		LNode* current_adj_vert = graph->vertices[current_vert_val].edgeList->sentinel->next;
+		while (current_adj_vert != graph->vertices[current_vert_val].edgeList->sentinel) {
+			if (dist_arr[current_adj_vert->key] == INFINITY) {
+				dist_arr[current_adj_vert->key] = dist_arr[current_vert_val] + 1;
+				path_predecessor[current_adj_vert->key] = current_vert_val;
+				enqueue(BFS_Queue, current_adj_vert->key);
+			}
+			current_adj_vert = current_adj_vert->next;
+		}
+	}
+
+	return dist_arr;
 }

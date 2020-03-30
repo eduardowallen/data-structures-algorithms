@@ -182,7 +182,7 @@ void printList(List* L) {
 				printf("-----");
 				tempnode = tempnode->next;
 			} while (tempnode != L->sentinel);
-			tempnode = L->sentinel;
+			tempnode = L->sentinel->next;
 			i = 1;
 			printf("\nHEAD ");
 			do {
