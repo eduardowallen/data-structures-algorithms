@@ -3,7 +3,7 @@
 #include <math.h>
 #include "linkedlist.h"
 #include "stack.h"
-
+#include "queue.h"
 #define VERT_COLOR_WHITE 0
 #define VERT_COLOR_GREY 1
 #define VERT_COLOR_BLACK 2
@@ -34,3 +34,4 @@ List* getInNeighbours(Graph* graph, Vertice* V);
 List* getOutNeighbours(Graph* graph, Vertice* V);
 void addDirectedEdge(Vertice* v1, Vertice* v2);
 void addUndirectedEdge(Vertice* v1, Vertice* v2);
+float* BFS_Graph(Graph* graph, Vertice* search_vert);

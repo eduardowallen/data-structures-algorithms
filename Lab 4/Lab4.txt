@@ -1,0 +1,7 @@
+The code for Lab 4 has been broken down into three different projects.
+The exercises are broken down into separate folders, where each folder name represents the exercises they contain.
+The folders should be loaded into its own project to avoid multiple instances of main.
+Testing on the code of a colleague was made on Gunnar Stutter's code where we tested incoming and outgoing neighbours. 
+We added different combinations of edges onto different sizes of the graph and we were pleased with the result.
+We also tested the traversal through the map (exercise 2) where we changed the ending vertice to be at an unaccessible point (5,9) which returned inf (not accessible)
+and we also tested the reverse-path (1,6) to (1,1) which worked perfectly.

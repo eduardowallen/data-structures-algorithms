@@ -179,20 +179,20 @@ void printList(List* L) {
 		printf("\n     ");
 			do {
 				i++;
-				printf("-----");
+				printf("----");
 				tempnode = tempnode->next;
 			} while (tempnode != L->sentinel);
 			tempnode = L->sentinel->next;
 			i = 1;
-			printf("\nHEAD ");
+			printf("\n     ");
 			do {
 				i++;
 				printf("| %d ", tempnode->key);
 				tempnode = tempnode->next;
 			} while (tempnode != L->sentinel);
-			printf("| TAIL\n     ");
+			printf("|\n     ");
 			for (int j = 1; j < i; j++) 
-				printf("-----");
+				printf("----");
 			printf("\n");
 	} else printf("Could not print list (it's empty).");
 }

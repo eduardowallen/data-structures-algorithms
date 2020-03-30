@@ -116,38 +116,40 @@ void addUndirectedEdge(Vertice* v1, Vertice* v2) {
 		}
 	}
 }
-float* graphBFS(Graph* graph, Vertice* search_vert) {
-	float* dist_arr = malloc(sizeof(float) * graph->size);
-	if (dist_arr == NULL) {
-		printf("Unable to allocate memory for distance array in BFS!");
+// Breadth-First-Search
+float* BFS_Graph(Graph* graph, Vertice* V) {
+	float* distance = malloc(sizeof(float) * graph->size);
+	if (distance == NULL) {
+		printf("Memory for BFS distance array could not be allocated.\n");
 		return NULL;
 	}
 	int* path_predecessor = malloc(sizeof(int) * graph->size);
 	if (path_predecessor == NULL) {
+		printf("Memory for BFS path_predecessor could not be allocated.\n");
 		return NULL;
 	}
-	for (int vert_counter = 0; vert_counter < graph->size; vert_counter++) {
-		dist_arr[vert_counter] = INFINITY;
-		path_predecessor[vert_counter] = vert_counter;
+	for (int vertice = 0; vertice < graph->size; vertice++) {
+		distance[vertice] = INFINITY;
+		path_predecessor[vertice] = vertice;
 	}
-	dist_arr[search_vert->key] = 0;
-	Queue* BFS_Queue = init_queue();
-	enqueue(BFS_Queue, search_vert->key);
-	int current_vert_val = 0;
+	distance[V->key] = 0;
+	Queue* BFS_Queue = Queue_Initialize();
+	Enqueue(BFS_Queue, V->key);
+	int curr_vert_val = 0;
 	int num_ques = 0;
-	while (!queue_empty(BFS_Queue)) {
+	while (!QueueEmpty(BFS_Queue)) {
 		num_ques++;
-		current_vert_val = dequeue(BFS_Queue);
-		LNode* current_adj_vert = graph->vertices[current_vert_val].edgeList->sentinel->next;
-		while (current_adj_vert != graph->vertices[current_vert_val].edgeList->sentinel) {
-			if (dist_arr[current_adj_vert->key] == INFINITY) {
-				dist_arr[current_adj_vert->key] = dist_arr[current_vert_val] + 1;
-				path_predecessor[current_adj_vert->key] = current_vert_val;
-				enqueue(BFS_Queue, current_adj_vert->key);
+		curr_vert_val = Dequeue(BFS_Queue);
+		LNode* curr_adj_vert = graph->vertices[curr_vert_val].edgeList->sentinel->next;
+		while (curr_adj_vert != graph->vertices[curr_vert_val].edgeList->sentinel) {
+			if (distance[curr_adj_vert->key] == INFINITY) {
+				distance[curr_adj_vert->key] = distance[curr_vert_val] + 1;
+				path_predecessor[curr_adj_vert->key] = curr_vert_val;
+				Enqueue(BFS_Queue, curr_adj_vert->key);
 			}
-			current_adj_vert = current_adj_vert->next;
+			curr_adj_vert = curr_adj_vert->next;
 		}
 	}
 
-	return dist_arr;
+	return distance;
 }
