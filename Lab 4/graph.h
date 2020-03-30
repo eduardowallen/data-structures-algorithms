@@ -12,9 +12,9 @@ typedef struct vertice_t {
 	List* edgeList;				// Pointer to the nodes inside the list
 	int key;
 	int color;
-	int visited;
+	int visit;
 	int predecessor;
-	int runtime;
+	int finished;
 } Vertice;
 
 typedef struct graph_t {

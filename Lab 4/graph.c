@@ -32,9 +32,10 @@ Graph* createGraph(int V) {
 	return graph;
 }
 int getNumVertices(Graph* graph){
-	if (graph == NULL)
+	if (graph != NULL)
+		return graph->size;
+	else
 		return 0;
-	return graph->size;
 }
 int getNumEdges(Graph* graph) {
 	int num_edges = 0;
@@ -54,7 +55,7 @@ List* getNeighbours(Graph* graph, Vertice* V) {
 	List* out_list = getOutNeighbours(graph, V);
 	LNode* current_vertice = in_list->sentinel->next;
 	LNode* tmp_vertice = NULL;
-	while (current_vertice != in_list->sentinel) {
+	while (current_vertice != in_list->sentinel->next) {
 		tmp_vertice = createNode(current_vertice->key);
 		insertNode(return_list, tmp_vertice);
 		current_vertice = current_vertice->next;
@@ -69,24 +70,24 @@ List* getNeighbours(Graph* graph, Vertice* V) {
 	return return_list;
 }
 List* getInNeighbours(Graph* graph, Vertice* V) {
-	List* tmp_list = createList(NULL, 0);
+	List* return_list = createList(NULL, 0);
 	LNode* tmp_node = NULL;
 	for (int i = 0; i < graph->size; i++)
 		if (searchList(graph->vertices[i].edgeList, V->key)) {
 			tmp_node = createNode(i);
-			insertNode(tmp_list, tmp_node);
+			insertNode(return_list, tmp_node);
 		}
-	return tmp_list;
+	return return_list;
 }
 List* getOutNeighbours(Graph* graph, Vertice* V) {
-	List* tmp_list = createList(NULL, 0);
+	List* return_list = createList(NULL, 0);
 	LNode* tmp_node = NULL;
 	for (int i = 0; i < graph->size; i++)
 		if (searchList(graph->vertices[i].edgeList, V->key)) {
 			tmp_node = createNode(i);
-			insertNode(tmp_list, tmp_node);
+			insertNode(return_list, tmp_node);
 		}
-	return tmp_list;
+	return return_list;
 }
 // Adding a directed edge from v1 ---> v2
 void addDirectedEdge(Vertice* v1, Vertice* v2) {

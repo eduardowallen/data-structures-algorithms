@@ -1,15 +1,15 @@
-#include "stack.h"
+#include "stack.h";
 
 /* This code only includes relevant functions to meet the conditions of Lab 4 */
 // Creates the stack
 Stack* createStack() {
-	Stack* newStack = malloc(sizeof(Stack));
-	if (newStack == NULL) {
+	Stack* init_stack = malloc(sizeof(Stack));
+	if (init_stack == NULL) {
 		printf("Memory for the stack could not be allocated.\n");
 		return NULL;
 	}
-	newStack->list = createList(NULL, 0);
-	return newStack;
+	init_stack->list = createList(NULL, 0);
+	return init_stack;
 }
 
 // Checks if the stack is empty
