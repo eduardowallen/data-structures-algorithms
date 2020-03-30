@@ -1,6 +1,6 @@
 #include "bellman_ford.h"
 
-int bellmanford() {
+void bellmanford() {
 	Graph* graph1 = creategraph(4, 5);
 
 	/*
