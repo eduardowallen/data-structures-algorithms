@@ -55,6 +55,7 @@ int main() {
 	tree_delete(root, root); // Clear the tree of its contents before we start
 	printf("\n\n\n----- CREATING NEW TREE BELOW FROM LOADED FILE ------\n\n\n");
 	int* L = load_file(sortingProblem1);		// Loads a file with a problem we want to create the tree with
+	root = NULL;
 	root = insert(root, new_node(L[1]));
 	for (int i = 2; i <= L[0]; i++) {
 		insert(root, new_node(L[i]));
