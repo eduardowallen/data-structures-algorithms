@@ -1,6 +1,7 @@
+/* Created by Eduardo Wallén & Junior Corazza */
 #include "bellman_ford.h"
 
-int bellmanford() {
+int main() {
 	Graph* graph1 = creategraph(4, 5);
 
 	/*

@@ -1,3 +1,4 @@
+/* Created by Eduardo Wallén & Junior Corazza */
 #include "bellman_ford.h"
 
 Graph* creategraph(int V, int E) {

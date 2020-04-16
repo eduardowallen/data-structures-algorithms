@@ -1,82 +1,80 @@
-#include "graph_v.h"
+/* Created by Eduardo Wallén & Junior Corazza */
+#include "graph.h"
+
+#define MAP_WIDTH 12
+#define MAP_HEIGHT 12
 
 int main() {
-	int V = 7;
-	/*
-				1
-		      /   \
-			 2 --> 3 <-- 7
-			 ^     |
-			 |	   |
-			 4<----5 -- 6
+	printf("--- Exercise 1 ---\n");
+	printf("addDirectedEdge, addUndirectedEdge");
+	Graph* ex1_graph = createGraph(5);
+	addDirectedEdge(&ex1_graph->vertices[0], &ex1_graph->vertices[1]);
+	addUndirectedEdge(&ex1_graph->vertices[0], &ex1_graph->vertices[3]);
+	addDirectedEdge(&ex1_graph->vertices[1], &ex1_graph->vertices[2]);
+	addDirectedEdge(&ex1_graph->vertices[2], &ex1_graph->vertices[4]);
+	addDirectedEdge(&ex1_graph->vertices[4], &ex1_graph->vertices[1]);
+	printf("\nIncoming neighbors:  ");
+	printList(getInNeighbours(ex1_graph, &ex1_graph->vertices[1]));
+	printf("\nOutgoing neighbors: ");
+	printList(getOutNeighbours(ex1_graph, &ex1_graph->vertices[1]));
+	printf("\nAll neighbors: ");
+	printList(getNeighbours(ex1_graph, &ex1_graph->vertices[1]));
+
+	printf("\n--- Exercise 2 ---\n");
+	printf("Breadth First Search to find the shortest path to a vertice\n");
+	printf("      1 2 3 4 5 6 7 8 9 10  \n");
+	printf("    0,0,0,0,0,0,0,0,0,0,0,0\n");
+	printf("1   0,1,1,1,1,0,1,1,1,1,1,0\n");
+	printf("2   0,1,1,1,1,0,1,1,1,1,1,0\n");
+	printf("3   0,1,1,1,1,0,1,1,1,1,1,0\n");
+	printf("4   0,1,1,1,1,0,1,1,1,1,1,0\n");
+	printf("5   0,1,1,1,1,0,0,0,0,0,1,0\n");
+	printf("6   0,1,1,1,1,0,1,1,1,1,1,0\n");
+	printf("7   0,1,1,1,1,0,1,1,1,1,1,0\n");
+	printf("8   0,1,1,1,1,0,1,1,1,1,1,0\n");
+	printf("9   0,1,0,0,0,0,1,1,1,1,1,0\n");
+	printf("10  0,1,1,1,1,1,1,1,1,1,1,0\n");
+	printf("    0,0,0,0,0,0,0,0,0,0,0,0\n");
+
+	//Searching for the shortest path between vert (1,1) and (1,6)
+	Graph* ex2_graph = createGraph(MAP_WIDTH * MAP_HEIGHT);
+
+	// We create an array (width*height) to use as a base when creating edges in the graph
+	int map_array[MAP_WIDTH][MAP_HEIGHT] = {
+			/* 1 2 3 4 5 6 7 8 9 10 */
+			{0,0,0,0,0,0,0,0,0,0,0,0},
+	/* 1 */	{0,1,1,1,1,0,1,1,1,1,1,0},
+	/* 2 */	{0,1,1,1,1,0,1,1,1,1,1,0},
+	/* 3 */	{0,1,1,1,1,0,1,1,1,1,1,0},
+	/* 4 */	{0,1,1,1,1,0,1,1,1,1,1,0},
+	/* 5 */	{0,1,1,1,1,0,0,0,0,0,1,0},
+	/* 6 */	{0,1,1,1,1,0,1,1,1,1,1,0},
+	/* 7 */	{0,1,1,1,1,0,1,1,1,1,1,0},
+	/* 8 */	{0,1,1,1,1,0,1,1,1,1,1,0},
+	/* 9 */	{0,1,0,0,0,0,1,1,1,1,1,0},
+	/* 10*/	{0,1,1,1,1,1,1,1,1,1,1,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0}
+	};
+
+	int current_vertice;
+
+	// Creating the edges as we make our way through
+	for (int y = 0; y < MAP_HEIGHT; y++)
+		for (int x = 0; x < MAP_WIDTH; x++)
+			if (map_array[y][x] == 1) {	// If the current vertice is accessible
+				current_vertice = (y * MAP_WIDTH) + x;
+				if (map_array[y][x - 1] == 1) // If the vertice to our left is accessible, add edge
+					addUndirectedEdge(&ex2_graph->vertices[current_vertice], &ex2_graph->vertices[current_vertice - 1]);
+				if (map_array[y][x + 1] == 1) // If the vertice to our right is accessible, add edge
+					addUndirectedEdge(&ex2_graph->vertices[current_vertice], &ex2_graph->vertices[current_vertice + 1]);
+				if (map_array[y - 1][x] == 1) // If the vertice above is accessible, add edge
+					addUndirectedEdge(&ex2_graph->vertices[current_vertice], &ex2_graph->vertices[current_vertice - MAP_WIDTH]);
+				if (map_array[y + 1][x] == 1) // If the vertice below is accessible, add edge
+					addUndirectedEdge(&ex2_graph->vertices[current_vertice], &ex2_graph->vertices[current_vertice + MAP_WIDTH]);
+			}
 
 
-			 
-	*/
-	Graph* graph = CreateGraph(V);
-	addUndirectedEdge(graph, 1, 2);
-	addUndirectedEdge(graph, 1, 3);
-	addUndirectedEdge(graph, 3, 5);
-	addUndirectedEdge(graph, 5, 6);
-	addDirectedEdge(graph, 2, 3);
-	addDirectedEdge(graph, 5, 4);
-	addDirectedEdge(graph, 4, 2);
-	addDirectedEdge(graph, 7, 3);
-	printf("Vertices: %d\n", getNumVertices(graph));
-	printf("Edges: %d \n", getNumEdges(graph));
-	printf("Get neighbours:\n");
-	getNeighbours(graph, 3);
-	getInNeighbours(graph, 3);
-	getNeighbours(graph, 4);
-	getNeighbours(graph, 5);
-	printf("End\n");
-	printGraph(graph);
-	printf("%d", hasEdge(graph, 4, 2));
+	float* dist_arr = BFS_Graph(ex2_graph, &ex2_graph->vertices[13]);
+	printf("Distance from (1,2) to (6,1) is %.0f\n\n", dist_arr[18]);
 
-	// Exercise 2, create the map as described in the exercise
-
-	V = 10;
-	Graph* exercise2 = CreateGraph(V);
-	int y, x;
-	for (y = 1; y <= V; y++) {// iterate through the list vertically (y)
-		if (y != 5) { // ignore 5 and 9 as they are not accessible from certain locations
-			if (y != 9)
-				for (x = 1; x <= V; x++) { // iterate through the list horizontally (x)
-					if (x != 5) // ignore 5 horizontally for now, we will add it later
-						addDirectedEdge(exercise2, y, x);
-				
-				}
-		}
-		// add directed edges to 5
-		if (y == 5) {
-			addDirectedEdge(exercise2, y, 1);
-			addDirectedEdge(exercise2, y, 2);
-			addDirectedEdge(exercise2, y, 3);
-			addDirectedEdge(exercise2, y, 4);
-			addDirectedEdge(exercise2, y, 10);
-		}
-		// add directed edges to 9
-		if (y == 9) {
-			addDirectedEdge(exercise2, y, 1);
-			addDirectedEdge(exercise2, y, 6);
-			addDirectedEdge(exercise2, y, 7);
-			addDirectedEdge(exercise2, y, 8);
-			addDirectedEdge(exercise2, y, 9);
-			addDirectedEdge(exercise2, y, 10);
-		}
-	}
-	getNeighbours(exercise2, 1);
-	printGraph(exercise2);
-	x = 1;
-	y = 1;
-	int path_found = 0;
-	int accessible = 1;
-	int notallowed = 0;
-	int steps = 0;
-	while (!path_found) {
-		printf("Finding path...");
-		steps++;
-		if (x == 6 && y == 1)
-			path_found = 1;
-	}
 }
